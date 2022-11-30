@@ -1,5 +1,7 @@
-import 'dart:html';
+// import 'dart:html';
 import 'dart:io';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -163,7 +165,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: Text("ye"),
                   onPressed: () async {
                     // 'username' and 'password' should be the values of the user login form.
-                    final response = await request.login("https://scrappy.up.railway.app/login/", {
+                    final response = await request.login("http://10.0.2.2:8000/login/", {
                       'username': username,
                       'password': password1,
                     });
