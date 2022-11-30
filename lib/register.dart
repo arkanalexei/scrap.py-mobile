@@ -5,19 +5,19 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:scrappy/login.dart';
 import 'package:scrappy/main.dart';
 import 'package:scrappy/drawer.dart';
-import 'package:scrappy/register.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  final _loginFormKey = GlobalKey<FormState>();
+class _RegisterPageState extends State<RegisterPage> {
+  final _registerFormKey = GlobalKey<FormState>();
   bool isPasswordVisible = false;
   void togglePasswordView() {
     setState(() {
@@ -27,13 +27,14 @@ class _LoginPageState extends State<LoginPage> {
 
   String username = "";
   String password1 = "";
+  String password2 = "";
 
   @override
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
-        title: Text("Login"),
+        title: Text("Register"),
         backgroundColor: Color(0xFF003320),
       ),
       drawer: PublicDrawer(),
@@ -80,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
                     padding: const EdgeInsets.only(left: 20),
                     child: TextFormField(
                       decoration: InputDecoration(
-                          border: InputBorder.none, hintText: 'Username'),
+                          border: InputBorder.none, hintText: 'Your Username'),
                       onChanged: (String? value) {
                         setState(() {
                           username = value!;
@@ -114,7 +115,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: TextFormField(
                       obscureText: true,
                       decoration: InputDecoration(
-                          border: InputBorder.none, hintText: 'Password'),
+                          border: InputBorder.none, hintText: 'Your Password'),
                       onChanged: (String? value) {
                         setState(() {
                           password1 = value!;
@@ -123,6 +124,40 @@ class _LoginPageState extends State<LoginPage> {
                       onSaved: (String? value) {
                         setState(() {
                           password1 = value!;
+                        });
+                      },
+                      validator: (String? value) {
+                        if (value == null || value.isEmpty) {
+                          return "Empty password";
+                        }
+                        return null;
+                      },
+                    ),
+                  ))),
+
+          SizedBox(height: 10),
+
+          Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      border: Border.all(color: Colors.white),
+                      borderRadius: BorderRadius.circular(12)),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: TextFormField(
+                      obscureText: true,
+                      decoration: InputDecoration(
+                          border: InputBorder.none, hintText: 'Your Password Again'),
+                      onChanged: (String? value) {
+                        setState(() {
+                          password2 = value!;
+                        });
+                      },
+                      onSaved: (String? value) {
+                        setState(() {
+                          password2 = value!;
                         });
                       },
                       validator: (String? value) {
@@ -156,26 +191,31 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 onPressed: () async {
                   // 'username' and 'password' should be the values of the user login form.
+                  // final response1 =
+                  //     await request.login("http://127.0.0.1:8000/register/", {
+                  //   'username': username,
+                  //   'password': password1,
+                  // });
+
                   final response =
-                      await request.login("http://127.0.0.1:8000/login/", {
+                      await request.post("http://127.0.0.1:8000/register/", {
                     'username': username,
-                    'password': password1,
+                    'password1': password1,
+                    'password2': password2,
                   });
 
                   print(username);
                   print(password1);
-                  if (request.loggedIn) {
-                    // Code here will run if the login succeeded.
-                    print("jon");
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                const MyHomePage()));
-                  } else {
-                    // Code here will run if the login failed (wrong username/password).
-                    print("wrong username/passwrod");
-                  }
+
+                  // Code here will run if the login succeeded.
+                  print("jon");
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              const MyHomePage()));
+
+                  // Code here will run if the login failed (wrong username/password).
                 },
               )),
             ),
@@ -186,12 +226,12 @@ class _LoginPageState extends State<LoginPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("Belum mempunyai akun?",
+              Text("Sudah punya akun?",
                   style: TextStyle(fontWeight: FontWeight.bold)),
-
+              
               TextButton(
                 child: Text(
-                  "Register",
+                  "Login",
                   style: TextStyle(
                     color: Color(0xFF198F85),
                     fontWeight: FontWeight.bold,
@@ -203,7 +243,7 @@ class _LoginPageState extends State<LoginPage> {
                         context,
                         MaterialPageRoute(
                             builder: (BuildContext context) =>
-                                const RegisterPage()));
+                                const LoginPage()));
                 },
               ),
             ],

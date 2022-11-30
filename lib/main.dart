@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:scrappy/login.dart';
+import 'package:scrappy/register.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:scrappy/drawer.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +27,7 @@ class MyApp extends StatelessWidget {
                 theme: ThemeData(
                     primarySwatch: Colors.blue,
                 ),
-                home: const MyHomePage(title: 'Flutter App'),
+                home: const MyHomePage(),
                 routes: {
                     "/login": (BuildContext context) => const LoginPage(),
                 },
@@ -34,7 +37,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  const MyHomePage({super.key});
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -45,7 +48,6 @@ class MyHomePage extends StatefulWidget {
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
 
-  final String title;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -74,10 +76,11 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
+      drawer: PublicDrawer(),
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: Text("Home"),
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
@@ -100,12 +103,21 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             ElevatedButton(
-              child: const Text("Nav"),
+              child: const Text("Login"),
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(builder:
                 (context) => LoginPage()));
               },
             ),
+
+            ElevatedButton(
+              child: const Text("Register"),
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(builder:
+                (context) => RegisterPage()));
+              },
+            ),
+
             const Text(
               'You have pushed the button this many times:',
             ),
