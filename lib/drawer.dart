@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:scrappy/main.dart';
-import 'package:scrappy/login.dart';
-import 'package:scrappy/register.dart';
+import 'package:scrappy/pages/login.dart';
+import 'package:scrappy/pages/register.dart';
+import 'package:scrappy/pages/newsList.dart';
+import 'package:scrappy/pages/newsSubmit.dart';
 
 class PublicDrawer extends StatefulWidget {
   const PublicDrawer({super.key});
@@ -55,6 +57,31 @@ class _PublicDrawerState extends State<PublicDrawer> {
                   context,
                   MaterialPageRoute(
                       builder: (context) => RegisterPage(
+                          )),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text('News List'),
+              onTap: () {
+                // Route menu ke halaman form
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => NewsList(
+                          )),
+                );
+              },
+            ),
+
+            ListTile(
+              title: const Text('News Submit'),
+              onTap: () {
+                // Route menu ke halaman form
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => NewsSubmit(
                           )),
                 );
               },
