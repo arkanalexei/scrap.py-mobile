@@ -52,8 +52,8 @@ Kalkulator jumlah *Greenhouse Emissions* yang telah dikurangi oleh user dengan m
 
 ### 🔒 User Yang Tidak Login 🔒
 - User bisa melihat artikel yang sudah dipublish admin
-- User bisa mengirim feedback melalui form di halaman contact
-- User bisa melihat profil organisasi, visi dan misi organisasi, dan daftar anggota organisasi
+- User bisa melihat feedback dan rating di halaman about us
+- User bisa melihat profil organisasi, visi dan misi organisasi, dan daftar anggota organisasi di halaman about us
 - User bisa melihat point leaderboard
 
 ### 🔑 User Yang Sudah Login 🔑
