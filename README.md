@@ -29,7 +29,7 @@ Halaman untuk membuat akun atau login. Tipe user yang login akan mempengaruhi ak
 ### Home @Arkan
 Tampilan utama website. Menampilkan informasi umum mengenai websitenya. Hal-hal seperti statistik seputar sampah dunia, teknis deposit sampah, dan lain-lain.
 ### About Us + Contact @Bastian
-Halaman untuk mengetahui informasi lebih jauh mengenai organisasi dan apa yang kami lakukan. Halaman ini akan menampilkan latar belakang munculnya organisasi, visi dan misi, daftar anggota organisasi, dan lokasi organisasi (dengan interactive map). Selain itu, halaman ini akan menampilkan daftar kontak yang dapat dihubungi dan form yang dapat diisi jika mempunyai pertanyaan lebih lanjut.
+Halaman untuk mengetahui informasi lebih jauh mengenai organisasi dan apa yang kami lakukan. Halaman ini akan menampilkan latar belakang munculnya organisasi, visi dan misi, dan daftar anggota organisasi. Selain itu, halaman ini akan menampilkan daftar kontak yang dapat dihubungi dan form feedback yang dapat diisi jika mempunyai kesan dan pesan.
 
 ### News/Blog @Arkan
 Halaman dimana admin bisa menulis dan menerbitkan artikel baru. Tipe user selain admin hanya bisa melihat artikel-artikel tersebut.
