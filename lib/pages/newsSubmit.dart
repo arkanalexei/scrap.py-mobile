@@ -67,18 +67,20 @@ class _NewsSubmitState extends State<NewsSubmit> {
                         // Validator sebagai validasi form
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
-                            return 'Judul tidak boleh kosong!';
+                            return 'Title can not be empty!';
                           }
                           return null;
                         },
                       ),
                       const SizedBox(height: 20.0),
                       TextFormField(
+                        maxLines: null,
+                        keyboardType: TextInputType.multiline,
                         decoration: InputDecoration(
                           hintText: "Description",
                           labelText: "Description",
                           // Menambahkan icon agar lebih intuitif
-                          icon: const Icon(Icons.title),
+                          icon: const Icon(Icons.description),
                           // Menambahkan circular border agar lebih rapi
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(5.0),
@@ -103,7 +105,7 @@ class _NewsSubmitState extends State<NewsSubmit> {
                         // Validator sebagai validasi form
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
-                            return 'Nominal tidak boleh kosong!';
+                            return 'Description can not be empty!';
                           }
                           return null;
                         },

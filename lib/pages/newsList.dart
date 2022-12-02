@@ -3,15 +3,18 @@ import 'package:scrappy/main.dart';
 import 'package:scrappy/drawer.dart';
 import 'package:scrappy/fetchNews.dart';
 import 'package:scrappy/pages/newsPage.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
 
 class NewsList extends StatefulWidget {
-  const NewsList({Key? key}): super(key: key);
+  const NewsList({Key? key}) : super(key: key);
 
   @override
   _NewsListState createState() => _NewsListState();
 }
 
 class _NewsListState extends State<NewsList> {
+  final _registerFormKey = GlobalKey<FormState>();
   late final Future finalFuture;
   @override
   void initState() {
@@ -20,6 +23,7 @@ class _NewsListState extends State<NewsList> {
   }
 
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
     return Scaffold(
         appBar: AppBar(
           title: Text('North Depok Morning Post'),
@@ -38,7 +42,7 @@ class _NewsListState extends State<NewsList> {
                   return Column(
                     children: const [
                       Text(
-                        "Tidak ada to do list :(",
+                        "Tidak ada news :(",
                         style:
                             TextStyle(color: Color(0xff59A5D8), fontSize: 20),
                       ),
@@ -51,13 +55,13 @@ class _NewsListState extends State<NewsList> {
                       itemBuilder: (_, index) => GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                              builder: ((context) => NewsPage(
-                                pk: snapshot.data![index].pk, 
-                                title: snapshot.data![index].fields.title, 
-                                description: snapshot.data![index].fields.description, 
-                                user: snapshot.data![index].fields.user, 
-                                date: snapshot.data![index].fields.date))
-                            ));
+                                builder: ((context) => NewsPage(
+                                    pk: snapshot.data![index].pk,
+                                    title: snapshot.data![index].fields.title,
+                                    description: snapshot
+                                        .data![index].fields.description,
+                                    user: snapshot.data![index].fields.user,
+                                    date: snapshot.data![index].fields.date))));
                           },
                           child: Container(
                             margin: const EdgeInsets.symmetric(
@@ -65,8 +69,7 @@ class _NewsListState extends State<NewsList> {
                             padding: const EdgeInsets.all(20.0),
                             decoration: BoxDecoration(
                                 border: Border.all(
-                                  color: Color(0xFF003320),
-                                    width: 2.5),
+                                    color: Color(0xFF003320), width: 2.5),
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(15.0),
                                 boxShadow: const [
@@ -88,7 +91,30 @@ class _NewsListState extends State<NewsList> {
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    
+                                    TextButton(
+                                      child: Text(
+                                        "Delete",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15,
+                                          color: Colors.red,
+                                        ),
+                                      ),
+                                      onPressed: () async {
+                                        var pk = snapshot.data![index].pk;
+                                        final response = await request.post(
+                                            "https://scrappy.up.railway.app/news/delete/$pk/",
+                                            {});
+
+                                        // Code here will run if the login succeeded.
+                                        Navigator.pushReplacement(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder:
+                                                    (BuildContext context) =>
+                                                        const MyHomePage()));
+                                      },
+                                    )
                                   ],
                                 )
                               ],

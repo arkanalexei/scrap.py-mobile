@@ -51,19 +51,10 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(height: 20),
         
             Text(
-              'Hello Again!',
+              'Scrap.py',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 36,
-              ),
-            ),
-        
-            SizedBox(height: 10),
-        
-            Text(
-              'Welcome back, you\'ve been missed!',
-              style: TextStyle(
-                fontSize: 20,
               ),
             ),
         
