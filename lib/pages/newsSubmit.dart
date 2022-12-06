@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:scrappy/drawer.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:scrappy/pages/newsList.dart';
 
 class NewsSubmit extends StatefulWidget {
   const NewsSubmit({super.key});
@@ -129,19 +130,25 @@ class _NewsSubmitState extends State<NewsSubmit> {
                                 fontSize: 15,
                               ),
                             ),
+                            style: ButtonStyle(
+                              minimumSize: MaterialStateProperty.all(
+                                  Size.fromHeight(40)),
+                            ),
                             onPressed: () async {
                               final response = await request.post(
-                                  "https://scrappy.up.railway.app/news/add/", {
-                                'title': _judul,
-                                'description': _deskripsi,
-                              },);
+                                "https://scrappy.up.railway.app/news/add/",
+                                {
+                                  'title': _judul,
+                                  'description': _deskripsi,
+                                },
+                              );
 
                               // Code here will run if the login succeeded.
                               Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
                                       builder: (BuildContext context) =>
-                                          const MyHomePage()));
+                                          const NewsList()));
 
                               // Code here will run if the login failed (wrong username/password).
                             },

@@ -4,11 +4,19 @@ import 'package:scrappy/pages/register.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:scrappy/drawer.dart';
+import 'package:scrappy/providers/userProvider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  runApp(const MyApp());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(
+        create: (_) => UserProvider(),
+      ),
+    ],
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -51,6 +59,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    // final admin = context.watch<AdminProvider>();
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -83,6 +92,18 @@ class _MyHomePageState extends State<MyHomePage> {
                       fontWeight: FontWeight.bold,
                       fontSize: 36,
                     ),
+                  ),
+        
+                  const SizedBox(height: 20),
+                  
+                  Visibility(
+                    visible: !context.watch<UserProvider>().getLogin,
+                    child: Text("Login to see full features!"),
+                  ),
+                  Visibility(
+                    visible: context.watch<UserProvider>().getLogin,
+                    child: Text(
+                        'Welcome to Scrap.py, ${context.watch<UserProvider>().getUsername}!'),
                   ),
                 ],
               ),

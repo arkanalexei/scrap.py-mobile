@@ -184,6 +184,9 @@ class _RegisterPageState extends State<RegisterPage> {
                       fontSize: 15,
                     ),
                   ),
+                  style: ButtonStyle(
+                    minimumSize: MaterialStateProperty.all(Size.fromHeight(40)),
+                  ),
                   onPressed: () async {
                     final response = await request
                         .post("https://scrappy.up.railway.app/register/", {

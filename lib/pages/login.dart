@@ -8,6 +8,7 @@ import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:scrappy/main.dart';
 import 'package:scrappy/drawer.dart';
 import 'package:scrappy/pages/register.dart';
+import 'package:scrappy/providers/userProvider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -146,6 +147,9 @@ class _LoginPageState extends State<LoginPage> {
                       fontSize: 15,
                     ),
                   ),
+                  style: ButtonStyle(
+                    minimumSize: MaterialStateProperty.all(Size.fromHeight(40)),
+                  ),
                   onPressed: () async {
                     // 'username' and 'password' should be the values of the user login form.
                     final response =
@@ -154,16 +158,24 @@ class _LoginPageState extends State<LoginPage> {
                       'password': password1,
                     });
         
-                    print(username);
-                    print(password1);
+                    // print(username);
+                    // print(password1);
+                    // print(response);
+
+                
                     if (request.loggedIn) {
                       // Code here will run if the login succeeded.
-                      print("jon");
+                      // print("jon");
+
+                      context.read<UserProvider>().saveAdmin(response['admin']);
+                      context.read<UserProvider>().saveLogin(true);
+                      context.read<UserProvider>().saveUsername(response['username']);
+                      
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                               builder: (BuildContext context) =>
-                                  const MyHomePage()));
+                                  MyHomePage()));
                     } else {
                       // Code here will run if the login failed (wrong username/password).
                       print("wrong username/passwrod");

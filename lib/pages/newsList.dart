@@ -5,6 +5,7 @@ import 'package:scrappy/fetchNews.dart';
 import 'package:scrappy/pages/newsPage.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
+import 'package:scrappy/providers/userProvider.dart';
 
 class NewsList extends StatefulWidget {
   const NewsList({Key? key}) : super(key: key);
@@ -84,36 +85,79 @@ class _NewsListState extends State<NewsList> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(
-                                      "${snapshot.data![index].fields.title}",
-                                      style: const TextStyle(
-                                        fontSize: 18.0,
-                                        fontWeight: FontWeight.bold,
+                                    Expanded(
+                                      child: Text(
+                                        "${snapshot.data![index].fields.title}",
+                                        style: const TextStyle(
+                                          fontSize: 18.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                        overflow: TextOverflow.ellipsis,
                                       ),
                                     ),
-                                    TextButton(
-                                      child: Text(
-                                        "Delete",
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 15,
-                                          color: Colors.red,
+                                    // Visibility(
+                                    //   visible: context
+                                    //       .watch<UserProvider>()
+                                    //       .getAdmin,
+                                    //   child: TextButton(
+                                    //     child: Text(
+                                    //       "Delete",
+                                    //       style: TextStyle(
+                                    //         fontWeight: FontWeight.bold,
+                                    //         fontSize: 15,
+                                    //         color: Colors.red,
+                                    //       ),
+                                    //     ),
+                                    //     onPressed: () async {
+                                    //       var pk = snapshot.data![index].pk;
+                                    //       final response = await request.post(
+                                    //           "https://scrappy.up.railway.app/news/delete/$pk/",
+                                    //           {});
+                                    //     },
+                                    //   ),
+                                    // ),
+                                    Visibility(
+                                      visible: context
+                                          .watch<UserProvider>()
+                                          .getAdmin,
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 25),
+                                        child: Container(
+                                          padding: EdgeInsets.all(5),
+                                          decoration: BoxDecoration(
+                                            color: Colors.red,
+                                            borderRadius:
+                                                BorderRadius.circular(12),
+                                          ),
+                                          child: Center(
+                                            child: TextButton(
+                                              child: Text(
+                                                "Delete",
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 15,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                              onPressed: () async {
+                                                var pk =
+                                                    snapshot.data![index].pk;
+                                                final response = await request.post(
+                                                    "https://scrappy.up.railway.app/news/delete/$pk/",
+                                                    {});
+
+                                                Navigator.pushReplacement(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (BuildContext
+                                                                context) =>
+                                                            const NewsList()));
+                                              },
+                                            ),
+                                          ),
                                         ),
                                       ),
-                                      onPressed: () async {
-                                        var pk = snapshot.data![index].pk;
-                                        final response = await request.post(
-                                            "https://scrappy.up.railway.app/news/delete/$pk/",
-                                            {});
-
-                                        // Code here will run if the login succeeded.
-                                        Navigator.pushReplacement(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder:
-                                                    (BuildContext context) =>
-                                                        const MyHomePage()));
-                                      },
                                     )
                                   ],
                                 )
