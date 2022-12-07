@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scrappy/main.dart';
 import 'package:scrappy/pages/deposit/deposit.dart';
+import 'package:scrappy/pages/deposit/form.dart';
 import 'package:scrappy/pages/login.dart';
 import 'package:scrappy/pages/register.dart';
 import 'package:scrappy/pages/newsList.dart';
@@ -175,19 +176,39 @@ class _PublicDrawerState extends State<PublicDrawer> {
                 ),
               ],
             ),
-            Visibility(
-              visible: context.watch<UserProvider>().getLogin,
-              child: ListTile(
-                leading: const Icon(Icons.airline_seat_recline_normal_sharp),
-                title: const Text('Deposit'),
-                onTap: () {
-                  // Route menu ke halaman form
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => DepositHomePage()),
-                  );
-                },
-              ),
+            ExpansionTile(
+              leading: const Icon(Icons.airline_seat_recline_normal_sharp),
+              iconColor: Color(0xFF003320),
+              collapsedIconColor: Color(0xFF003320),
+              title: Text("Deposit"),
+              textColor: Color(0xFF198F85),
+              children: [
+                ListTile(
+                  title: const Text('Deposit Page'),
+                  onTap: () {
+                    // Route menu ke halaman form
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const DepositHomePage()),
+                    );
+                  },
+                ),
+                Visibility(
+                  visible: context.watch<UserProvider>().getLogin,
+                  child: ListTile(
+                    title: const Text('Waste Deposit Form'),
+                    onTap: () {
+                      // Route menu ke halaman form
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const DepositFormPage()),
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
           ],
         ),
