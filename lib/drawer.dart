@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scrappy/main.dart';
+import 'package:scrappy/pages/deposit/deposit.dart';
 import 'package:scrappy/pages/login.dart';
 import 'package:scrappy/pages/register.dart';
 import 'package:scrappy/pages/newsList.dart';
@@ -173,6 +174,20 @@ class _PublicDrawerState extends State<PublicDrawer> {
                   ),
                 ),
               ],
+            ),
+            Visibility(
+              visible: context.watch<UserProvider>().getLogin,
+              child: ListTile(
+                leading: const Icon(Icons.airline_seat_recline_normal_sharp),
+                title: const Text('Deposit'),
+                onTap: () {
+                  // Route menu ke halaman form
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => DepositHomePage()),
+                  );
+                },
+              ),
             ),
           ],
         ),
