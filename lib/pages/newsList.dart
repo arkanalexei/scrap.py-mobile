@@ -66,13 +66,13 @@ class _NewsListState extends State<NewsList> {
                           },
                           child: Container(
                             margin: const EdgeInsets.symmetric(
-                                horizontal: 16, vertical: 12),
+                                horizontal: 16, vertical: 8),
                             padding: const EdgeInsets.all(20.0),
                             decoration: BoxDecoration(
                                 border: Border.all(
-                                    color: Color(0xFF003320), width: 2.5),
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(15.0),
+                                    color: Color(0xFF003320)),
+                                color: Colors.grey[200],
+                                borderRadius: BorderRadius.circular(12),
                                 boxShadow: const [
                                   BoxShadow(
                                       color: Colors.black, blurRadius: 2.0)
@@ -95,27 +95,6 @@ class _NewsListState extends State<NewsList> {
                                         overflow: TextOverflow.ellipsis,
                                       ),
                                     ),
-                                    // Visibility(
-                                    //   visible: context
-                                    //       .watch<UserProvider>()
-                                    //       .getAdmin,
-                                    //   child: TextButton(
-                                    //     child: Text(
-                                    //       "Delete",
-                                    //       style: TextStyle(
-                                    //         fontWeight: FontWeight.bold,
-                                    //         fontSize: 15,
-                                    //         color: Colors.red,
-                                    //       ),
-                                    //     ),
-                                    //     onPressed: () async {
-                                    //       var pk = snapshot.data![index].pk;
-                                    //       final response = await request.post(
-                                    //           "https://scrappy.up.railway.app/news/delete/$pk/",
-                                    //           {});
-                                    //     },
-                                    //   ),
-                                    // ),
                                     Visibility(
                                       visible: context
                                           .watch<UserProvider>()
