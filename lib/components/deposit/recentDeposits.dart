@@ -1,27 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
-import 'package:scrappy/pages/deposit/depositApi.dart';
+import 'package:scrappy/components/deposit/depositCard.dart';
+import 'package:scrappy/model/depositItem.dart';
 
-class DepositsTable extends StatefulWidget {
-  const DepositsTable({Key? key}) : super(key: key);
+class RecentDeposits extends StatefulWidget {
+  const RecentDeposits({Key? key}) : super(key: key);
 
   @override
-  _DepositsTableState createState() => _DepositsTableState();
+  _RecentDepositsState createState() => _RecentDepositsState();
 }
 
-class _DepositsTableState extends State<DepositsTable> {
+class _RecentDepositsState extends State<RecentDeposits> {
   final _registerFormKey = GlobalKey<FormState>();
   late final Future completedFuture;
   @override
   void initState() {
     super.initState();
-    completedFuture = fetchRecentDeposits();
   }
 
   @override
   Widget build(BuildContext context) {
-    final request = context.watch<CookieRequest>();
+    var request = context.watch<CookieRequest>();
+    completedFuture =
+        request.get('https://scrappy.up.railway.app/deposit/json/');
+
     return FutureBuilder(
         future: completedFuture,
         builder: (context, AsyncSnapshot snapshot) {
@@ -31,17 +34,23 @@ class _DepositsTableState extends State<DepositsTable> {
             if (!snapshot.hasData) {
               return Column(
                 children: const [
-                  Text(
-                    "You have no past deposits. Deposit now!",
-                    style: TextStyle(color: Color(0xff59A5D8), fontSize: 20),
-                  ),
+                  Text("You have no past deposits. Deposit now!"),
                   SizedBox(height: 8),
                 ],
               );
             } else {
-              return const Text("this is supposed to be ListView or smth");
+              return WidgetsFromList(snapshot.data!);
             }
           }
         });
   }
+}
+
+Widget WidgetsFromList(List<dynamic> data) {
+  List<Widget> arr = List<Widget>.generate(
+    data.length,
+    (index) => DepositCard(deposit: WasteDeposit.fromJson(data[index])),
+  );
+
+  return Row(children: arr);
 }

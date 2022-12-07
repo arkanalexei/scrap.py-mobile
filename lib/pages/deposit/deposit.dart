@@ -2,9 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:scrappy/main.dart';
 import 'package:scrappy/drawer.dart';
-import 'package:intl/intl.dart';
+import 'package:scrappy/components/deposit/recentDeposits.dart';
 import 'package:scrappy/providers/userProvider.dart';
 
 import 'form.dart';
@@ -30,7 +29,7 @@ class DepositHomePage extends StatelessWidget {
                 visible: context.watch<UserProvider>().getLogin,
                 child: Column(
                   children: [
-                    const Text("Logged in stuff"),
+                    const RecentDeposits(),
                     ElevatedButton(
                         onPressed: () {
                           Navigator.pushReplacement(
