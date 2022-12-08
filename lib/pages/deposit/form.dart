@@ -1,32 +1,11 @@
 import 'dart:convert';
-import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:scrappy/drawer.dart';
-import 'package:scrappy/model/depositItem.dart';
-
-import 'api.dart';
-
-// void main() {
-//   runApp(const FormApp());
-// }
-
-// class DepositFormPage extends StatelessWidget {
-//   const DepositFormPage({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Flutter Demo',
-//       theme: ThemeData(
-//         primarySwatch: Colors.blue,
-//       ),
-//       home: const BudgetForm(title: 'Form'),
-//     );
-//   }
-// }
+import 'package:scrappy/pages/deposit/deposit.dart';
+import '../../providers/constants.dart';
 
 class DepositFormPage extends StatefulWidget {
   const DepositFormPage({super.key});
@@ -37,14 +16,13 @@ class DepositFormPage extends StatefulWidget {
 
 class _DepositFormState extends State<DepositFormPage> {
   final _formKey = GlobalKey<FormState>();
-  // final List<String> typeChoices = <String>['Pemasukan', 'Pengeluaran'];
 
-  // Form Data (state)
-  // int user;
+  /** Form Data (state) */
   double _mass = 0.0;
   String _description = "";
-  // DateTime date_time;
   String _type = "PLASTIK";
+  // int user; // automatic
+  // DateTime date_time; // automatic
 
   @override
   Widget build(BuildContext context) {
@@ -60,12 +38,11 @@ class _DepositFormState extends State<DepositFormPage> {
         child: Center(
           child: Column(
             children: [
-              const Text("Form Title"),
               Form(
                 key: _formKey,
                 child: SingleChildScrollView(
                   child: Padding(
-                    padding: EdgeInsets.all(20.0),
+                    padding: const EdgeInsets.all(20.0),
                     child: Column(
                       children: <Widget>[
                         TextFormField(
@@ -77,19 +54,19 @@ class _DepositFormState extends State<DepositFormPage> {
                               borderRadius: BorderRadius.circular(5.0),
                             ),
                           ),
-                          onChanged: (String? value) {
-                            ;
-                          },
+                          onChanged: (String? value) {},
                           validator: (String? value) {
                             if (value == null || value.isEmpty) {
                               return 'Mass cannot be empty.';
                             } else {
                               try {
-                                // should use tryParse
-                                double.parse(value);
-                                setState(() {
-                                  _mass = double.parse(value);
-                                });
+                                // equivalent to tryParse
+                                double num = double.parse(value);
+                                if (num <= 0) {
+                                  return 'Mass cannot be zero or negative.';
+                                }
+                                // side effect (update state)
+                                setState(() => _mass = num);
                               } on FormatException {
                                 return 'Mass must be a valid number.';
                               }
@@ -160,32 +137,31 @@ class _DepositFormState extends State<DepositFormPage> {
                             });
                           },
                         ),
+                        const Padding(padding: EdgeInsets.all(20.0)),
                         TextButton(
                           style: ButtonStyle(
                             backgroundColor:
                                 MaterialStateProperty.all(Colors.blue),
                           ),
                           onPressed: () async {
+                            String msg = "";
                             if (_formKey.currentState!.validate()) {
-                              // submitDeposit(request, _description, _mass);
-                              debugPrint("MAKING POST REQUEST");
-                              // i think response needs to be JSON and not the (redirect) full html page.
-                              final response = await request.postJson(
-                                'https://scrappy.up.railway.app/deposit/submit/',
+                              // send data to server
+                              final response = await request.post(
+                                '$SITE_URL/deposit/submit/',
                                 jsonEncode({
                                   'description': _description,
                                   'mass': _mass,
                                   'type': _type,
                                 }),
                               );
-                              debugPrint("FINISHING POST REQUEST");
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(const SnackBar(
-                                content: Text('Your deposit has been saved!'),
-                              ));
+                              // response SHOULD be in json form
+                              msg = response['message'].toString();
                             } else {
-                              debugPrint("FORM NOT VALID");
+                              msg = "Invalid form. Recheck your data.";
                             }
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(SnackBar(content: Text(msg)));
                           },
                           child: const Text(
                             "Submit",

@@ -1,8 +1,12 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:scrappy/components/deposit/depositCard.dart';
 import 'package:scrappy/model/depositItem.dart';
+
+import '../../providers/constants.dart';
 
 class RecentDeposits extends StatefulWidget {
   const RecentDeposits({Key? key}) : super(key: key);
@@ -22,8 +26,7 @@ class _RecentDepositsState extends State<RecentDeposits> {
   @override
   Widget build(BuildContext context) {
     var request = context.watch<CookieRequest>();
-    completedFuture =
-        request.get('https://scrappy.up.railway.app/deposit/json/');
+    completedFuture = request.get('$SITE_URL/deposit/json/');
 
     return FutureBuilder(
         future: completedFuture,
@@ -48,9 +51,10 @@ class _RecentDepositsState extends State<RecentDeposits> {
 
 Widget WidgetsFromList(List<dynamic> data) {
   List<Widget> arr = List<Widget>.generate(
-    data.length,
-    (index) => DepositCard(deposit: WasteDeposit.fromJson(data[index])),
+    min(data.length, 4),
+    (index) => DepositCard(
+        deposit: WasteDeposit.fromJson(data[data.length - index - 1])),
   );
 
-  return Row(children: arr);
+  return Column(children: arr);
 }

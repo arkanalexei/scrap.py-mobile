@@ -20,13 +20,14 @@ class DepositCard extends StatelessWidget {
             builder: (context) => DepositDetailPage(deposit: deposit)),
       ),
       child: SizedBox(
-        width: 200,
-        height: 150,
+        height: 125,
         child: Card(
           elevation: 3.0,
-          shape: const RoundedRectangleBorder(),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+          ),
           child: Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(15.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
