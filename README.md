@@ -14,7 +14,6 @@
 - [Givarrel Veivel Pattiwael - 2106640341](https://github.com/Veivel)
 - [Abraham Javier Sebastian Situmorang - 2106704364](https://github.com/ajsebastians)
 - [Arkan Alexei Andrei - 2106631463](https://github.com/arkanalexei)
-- Muhammad Rafi' Nur Rozaan - NPM
 
 ## 📝 Ringkasan 📝
 Indonesia merupakan negara produsen sampah terbesar di seluruh Asia. Faktanya, kita menghasilkan 67,8 juta ton sampah pada tahun 2021. Produksi sampah Indonesia pada tahun 2022 diperkirakan mencapai 68,8 juta ton.
