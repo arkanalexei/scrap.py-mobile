@@ -53,7 +53,7 @@ class _BoardState extends State<Board> {
                 } else if (snapshot.hasError) {
                   return Text("${snapshot.error}");
                 }
-                return CircularProgressIndicator();
+                return const Center(child: CircularProgressIndicator());
               },
             )));
   }
