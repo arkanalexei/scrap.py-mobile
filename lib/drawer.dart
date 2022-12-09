@@ -6,6 +6,8 @@ import 'package:scrappy/pages/login.dart';
 import 'package:scrappy/pages/register.dart';
 import 'package:scrappy/pages/newsList.dart';
 import 'package:scrappy/pages/newsSubmit.dart';
+// leaderboard
+import 'package:scrappy/pages/leaderboard/leaderboard.dart';
 import 'package:scrappy/providers/userProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -191,6 +193,40 @@ class _PublicDrawerState extends State<PublicDrawer> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => const DepositHomePage()),
+                    );
+                  },
+                ),
+                Visibility(
+                  visible: context.watch<UserProvider>().getLogin,
+                  child: ListTile(
+                    title: const Text('Waste Deposit Form'),
+                    onTap: () {
+                      // Route menu ke halaman form
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const DepositFormPage()),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+            ExpansionTile(
+              leading: const Icon(Icons.leaderboard_rounded),
+              iconColor: Color(0xFF003320),
+              collapsedIconColor: Color(0xFF003320),
+              title: Text("Leaderboard"),
+              textColor: Color(0xFF198F85),
+              children: [
+                ListTile(
+                  title: const Text('Leaderboard'),
+                  onTap: () {
+                    // Route menu ke halaman form
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const Board()),
                     );
                   },
                 ),
