@@ -48,9 +48,9 @@ class _LoginPageState extends State<LoginPage> {
               size: 100,
               color: Color(0xFF003320),
             ),
-        
+
             SizedBox(height: 20),
-        
+
             Text(
               'Scrap.py',
               style: TextStyle(
@@ -58,9 +58,9 @@ class _LoginPageState extends State<LoginPage> {
                 fontSize: 36,
               ),
             ),
-        
+
             SizedBox(height: 20),
-        
+
             // Username textfield
             Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -92,9 +92,9 @@ class _LoginPageState extends State<LoginPage> {
                         },
                       ),
                     ))),
-        
+
             SizedBox(height: 10),
-        
+
             Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25),
                 child: Container(
@@ -126,9 +126,9 @@ class _LoginPageState extends State<LoginPage> {
                         },
                       ),
                     ))),
-        
+
             SizedBox(height: 10),
-        
+
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25),
               child: Container(
@@ -152,48 +152,41 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   onPressed: () async {
                     // 'username' and 'password' should be the values of the user login form.
-                    final response =
-                        await request.login("https://scrappy.up.railway.app/login/", {
+                    final response = await request
+                        .login("https://scrappy.up.railway.app/login/", {
                       'username': username,
                       'password': password1,
                     });
-        
-                    // print(username);
-                    // print(password1);
-                    // print(response);
 
-                
                     if (request.loggedIn) {
                       // Code here will run if the login succeeded.
-                      // print("jon");
-
                       context.read<UserProvider>().saveAdmin(response['admin']);
                       context.read<UserProvider>().saveLogin(true);
-                      context.read<UserProvider>().saveUsername(response['username']);
-                      
+                      context
+                          .read<UserProvider>()
+                          .saveUsername(response['username']);
+
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  MyHomePage()));
+                              builder: (BuildContext context) => MyHomePage()));
                     } else {
                       // Code here will run if the login failed (wrong username/password).
-                      print("wrong username/passwrod");
-                      
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text('Incorrect username or password!')));
                     }
                   },
                 )),
               ),
             ),
-        
+
             SizedBox(height: 20),
-        
+
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text("Belum mempunyai akun?",
                     style: TextStyle(fontWeight: FontWeight.bold)),
-        
                 TextButton(
                   child: Text(
                     "Register",
@@ -205,10 +198,10 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   onPressed: () {
                     Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  const RegisterPage()));
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                const RegisterPage()));
                   },
                 ),
               ],
