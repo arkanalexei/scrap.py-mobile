@@ -83,64 +83,7 @@ class _BoardState extends State<Board> {
                       ],
                     ),
                   );
-                  
-                  // Column(
-                  //   children: [
-                  //     Container(
-                  //       child: SizedBox(
-                  //         height: 600,
-                  //         child: ListView.separated(
-                  //           itemCount: snapshot.data!.length,
-                  //           itemBuilder: (context, index) {
-                  //             return ListTile(
-                  //               title: Text(snapshot.data![index].fields.name),
-                  //               leading: Text("#${index + 1}"),
-                  //               trailing: Text(snapshot
-                  //                   .data![index].fields.points
-                  //                   .toString()),
-                  //               // trailing: Text("haloooooo ")
-                  //             );
-                  //           },
-                  //           separatorBuilder:
-                  //               (BuildContext context, int index) =>
-                  //                   const Divider(),
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ],
-                  // );
-                  // Container(
-                  //   child:
-                  //   SizedBox(
-                  //     height: 600,
-                  //     child:
-                  //     ListView.separated(
-                  //       itemCount: snapshot.data!.length,
-                  //       itemBuilder: (context, index) {
-                  //         return ListTile(
-                  //           title: Text(snapshot.data![index].fields.name),
-                  //           leading: Text("#${index + 1}"),
-                  //           trailing: Text(
-                  //               snapshot.data![index].fields.points.toString()),
-                  //           // trailing: Text("haloooooo ")
-                  //         );
-                  //       },
-                  //       separatorBuilder: (BuildContext context, int index) =>
-                  //           const Divider(),
-                  //     ),
-                  //   ),
-                  // );
-
-                  // return ListView.builder(
-                  //   itemCount: snapshot.data!.length,
-                  //   itemBuilder: (context, index) {
-                  //     return ListTile(
-                  //       title: Text(snapshot.data![index].fields.name),
-                  //       subtitle: Text(snapshot.data![index].fields.points.toString()),
-
-                  //     );
-                  //   },
-                  // );
+            
                 } else if (snapshot.hasError) {
                   return Text("${snapshot.error}");
                 }

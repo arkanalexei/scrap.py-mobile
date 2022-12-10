@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:scrappy/main.dart';
 import 'package:scrappy/pages/deposit/deposit.dart';
 import 'package:scrappy/pages/deposit/form.dart';
+import 'package:scrappy/pages/leaderboard/formComment.dart';
 import 'package:scrappy/pages/login.dart';
 import 'package:scrappy/pages/register.dart';
 import 'package:scrappy/pages/newsList.dart';
 import 'package:scrappy/pages/newsSubmit.dart';
 // leaderboard
 import 'package:scrappy/pages/leaderboard/leaderboard.dart';
+import 'package:scrappy/pages/leaderboard/formComment/.dart';
+import 'package:scrappy/pages/leaderboard/fetchLeaderboard.dart';
+
 import 'package:scrappy/providers/userProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -233,13 +237,13 @@ class _PublicDrawerState extends State<PublicDrawer> {
                 Visibility(
                   visible: context.watch<UserProvider>().getLogin,
                   child: ListTile(
-                    title: const Text('Waste Deposit Form'),
+                    title: const Text('Comment Form'),
                     onTap: () {
                       // Route menu ke halaman form
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const DepositFormPage()),
+                            builder: (context) => const CommentFormPage()),
                       );
                     },
                   ),
