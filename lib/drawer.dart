@@ -231,20 +231,20 @@ class _PublicDrawerState extends State<PublicDrawer> {
                     );
                   },
                 ),
-                Visibility(
-                  visible: context.watch<UserProvider>().getLogin,
-                  child: ListTile(
-                    title: const Text('Comment Form'),
-                    onTap: () {
-                      // Route menu ke halaman form
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const CommentFormPage()),
-                      );
-                    },
-                  ),
-                ),
+                // Visibility(
+                //   visible: context.watch<UserProvider>().getLogin,
+                //   child: ListTile(
+                //     title: const Text('Comment Form'),
+                //     onTap: () {
+                //       // Route menu ke halaman form
+                //       Navigator.pushReplacement(
+                //         context,
+                //         MaterialPageRoute(
+                //             builder: (context) => const CommentFormPage()),
+                //       );
+                //     },
+                //   ),
+                // ),
               ],
             ),
           ],

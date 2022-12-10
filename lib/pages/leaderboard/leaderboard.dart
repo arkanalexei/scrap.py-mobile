@@ -13,6 +13,7 @@ import 'package:scrappy/pages/leaderboard/fetchComment.dart';
 
 import '../../providers/userProvider.dart';
 import '../deposit/form.dart';
+import 'formComment.dart';
 
 class Board extends StatefulWidget {
   const Board({Key? key}) : super(key: key);
@@ -132,8 +133,21 @@ class _BoardState extends State<Board> {
                                   itemBuilder: (context, index) {
                                     return ListTile(
                                       title: Text(snapshot.data[index].fields.nama),
-                                      subtitle: Text(snapshot.data[index].fields.comment),
-                                      trailing: Text(DateFormat('dd-MM-yyyy').format(snapshot.data[index].fields.dateAdded)),
+                                      subtitle: Text(DateFormat('dd-MM-yyyy').format(snapshot.data[index].fields.dateAdded)),
+                                      // trailing: Text('"${snapshot.data[index].fields.comment}"'),
+                                      //show the comment longer
+
+                                      trailing: Container(
+                                        margin: const EdgeInsets.only(top: 10),
+                                        child: SizedBox(
+                                          width: 450,
+                                          child: Text(
+                                            '"${snapshot.data[index].fields.comment}"',
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 7,
+                                          ),
+                                        ),
+                                      ),
                                     );
                                   },
                                   separatorBuilder:
@@ -147,16 +161,22 @@ class _BoardState extends State<Board> {
                             return const Center(child: const CircularProgressIndicator());
                           },
                         ),
-                        // send comment button
-                        ElevatedButton(
+                        Container(
+                          margin: const EdgeInsets.only(left: 10, bottom: 30, top: 10),
+                          child: ElevatedButton(
                             onPressed: () {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => DepositFormPage()),
+                                    builder: (context) => const CommentFormPage()),
                               );
                             },
-                            child: const Text("Send Comment"))
+                            child: const Text("Send Comment")),
+                        ),
+                        // send comment button
+                        
+                        //gap
+                        
                       ],
                     ),
                   ),

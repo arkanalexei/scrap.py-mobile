@@ -17,11 +17,8 @@ class CommentFormPage extends StatefulWidget {
 class _CommentFormState extends State<CommentFormPage> {
   final _formKey = GlobalKey<FormState>();
 
-  /** Form Data (state) */
+  /// Form Data (state) */
   String _comment = '';
-  String _description = "";
-  // int user; // automatic
-  // DateTime date_time; // automatic
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +26,7 @@ class _CommentFormState extends State<CommentFormPage> {
     return Scaffold(
       drawer: const PublicDrawer(),
       appBar: AppBar(
-        title: const Text("Waste Deposit Form"),
+        title: const Text("Comment Form"),
         backgroundColor: const Color(0xFF003320),
       ),
       body: SafeArea(
@@ -85,6 +82,7 @@ class _CommentFormState extends State<CommentFormPage> {
                                 '$SITE_URL/leaderboard/submit/',
                                 jsonEncode({
                                   'comment': _comment,
+
                                 }),
                               );
                               // response SHOULD be in json form
