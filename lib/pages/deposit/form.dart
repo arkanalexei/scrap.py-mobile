@@ -163,9 +163,13 @@ class _DepositFormState extends State<DepositFormPage> {
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(SnackBar(content: Text(msg)));
                           },
-                          child: const Text(
-                            "Submit",
-                            style: TextStyle(color: Colors.white),
+                          child: const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text(
+                              "Submit",
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.white),
+                            ),
                           ),
                         ),
                       ],
