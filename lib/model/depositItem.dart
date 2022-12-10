@@ -42,10 +42,10 @@ class Fields {
     required this.type,
   });
 
-  int user;
-  Float mass;
+  int user; // automatic
+  double mass;
   String description;
-  DateTime date_time;
+  DateTime date_time; // automatic
   String type;
 
   factory Fields.fromJson(Map<String, dynamic> json) => Fields(
