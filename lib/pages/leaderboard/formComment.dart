@@ -5,7 +5,6 @@ import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:scrappy/drawer.dart';
 import 'package:scrappy/pages/leaderboard/leaderboard.dart';
-import 'package:scrappy/pages/leaderboard/formComment/.dart';
 import '../../providers/constants.dart';
 
 class CommentFormPage extends StatefulWidget {
@@ -73,28 +72,7 @@ class _CommentFormState extends State<CommentFormPage> {
                             }
                           },
                         ),
-                        const Padding(padding: EdgeInsets.all(10)),
-                        TextFormField(
-                          decoration: InputDecoration(
-                            hintText: "nvm just write something here...",
-                            labelText: "Description",
-                            icon: const Icon(Icons.textsms),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5.0),
-                            ),
-                          ),
-                          onChanged: (String? value) {
-                            setState(() {
-                              _description = value!;
-                            });
-                          },
-                          validator: (String? value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Description must not be empty.';
-                            }
-                            return null;
-                          },
-                        ),
+                        
                         const Padding(padding: EdgeInsets.all(20.0)),
                         TextButton(
                           style: ButtonStyle(

@@ -9,7 +9,6 @@ import 'package:scrappy/pages/newsList.dart';
 import 'package:scrappy/pages/newsSubmit.dart';
 // leaderboard
 import 'package:scrappy/pages/leaderboard/leaderboard.dart';
-import 'package:scrappy/pages/leaderboard/formComment/.dart';
 import 'package:scrappy/pages/leaderboard/fetchLeaderboard.dart';
 
 import 'package:scrappy/providers/userProvider.dart';
