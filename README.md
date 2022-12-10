@@ -1,6 +1,14 @@
 # ♻️ Scrap.py ♻️
 ![Banner](banner.png)
-![Deployment Status](https://github.com/arkanalexei/tk-pbp/actions/workflows/dpl.yml/badge.svg)
+
+[![Pre-Release](https://github.com/arkanalexei/scrap.py-mobile/actions/workflows/pre-release.yml/badge.svg)](https://github.com/arkanalexei/scrap.py-mobile/actions/workflows/pre-release.yml)
+
+[![Release](https://github.com/arkanalexei/scrap.py-mobile/actions/workflows/release.yml/badge.svg)](https://github.com/arkanalexei/scrap.py-mobile/actions/workflows/release.yml)
+
+[![Staging](https://github.com/arkanalexei/scrap.py-mobile/actions/workflows/staging.yml/badge.svg)](https://github.com/arkanalexei/scrap.py-mobile/actions/workflows/staging.yml)
+
+[![Build status](https://build.appcenter.ms/v0.1/apps/7cece1c6-7825-4e7a-9b5b-092ceb4d8649/branches/master/badge)](https://appcenter.ms)
+
 >Proyek ini dibuat untuk memenuhi tugas Proyek Akhir Semester (PAS) pada mata kuliah Pemrograman Berbasis Platform (CSGE602022) yang diselenggarakan oleh Fakultas Ilmu Komputer, Universitas Indonesia pada Semester Gasal, Tahun Ajaran 2022/2023.
 
 ## ⚒️ Tools ⚒️
