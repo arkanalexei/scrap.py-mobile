@@ -44,51 +44,7 @@ class _PublicDrawerState extends State<PublicDrawer> {
                 );
               },
             ),
-            // ListTile(
-            //   title: const Text('Login'),
-            //   onTap: () {
-            //     // Route menu ke halaman form
-            //     Navigator.pushReplacement(
-            //       context,
-            //       MaterialPageRoute(builder: (context) => LoginPage()),
-            //     );
-            //   },
-            // ),
-            // ListTile(
-            //   title: const Text('Register'),
-            //   onTap: () {
-            //     // Route menu ke halaman form
-            //     Navigator.pushReplacement(
-            //       context,
-            //       MaterialPageRoute(builder: (context) => RegisterPage()),
-            //     );
-            //   },
-            // ),
-            // ListTile(
-            //   title: const Text('News List'),
-            //   onTap: () {
-            //     // Route menu ke halaman form
-            //     Navigator.pushReplacement(
-            //       context,
-            //       MaterialPageRoute(builder: (context) => NewsList()),
-            //     );
-            //   },
-            // ),
-
-            // Visibility(
-            //   visible: context.watch<UserProvider>().getAdmin,
-            //   child: ListTile(
-            //     title: const Text('News Submit'),
-            //     onTap: () {
-            //       // Route menu ke halaman form
-            //       Navigator.pushReplacement(
-            //         context,
-            //         MaterialPageRoute(builder: (context) => NewsSubmit()),
-            //       );
-            //     },
-            //   ),
-            // ),
-
+           
             ExpansionTile(
               leading: Icon(Icons.person),
               iconColor: Color(0xFF003320),

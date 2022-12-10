@@ -6,7 +6,17 @@ import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:scrappy/drawer.dart';
 import 'package:scrappy/providers/userProvider.dart';
 
+// import 'package:appcenter/appcenter.dart';
+// import 'package:appcenter_analytics/appcenter_analytics.dart';
+// import 'package:appcenter_crashes/appcenter_crashes.dart';
+// import 'package:flutter/foundation.dart';
+
 void main() async {
+  // final ios = defaultTargetPlatform == TargetPlatform.iOS;
+
+  // var app_secret = ios ? "3290fb23-9b25-4a35-b4f1-b26e098838ec" : "96781fae-f8e4-4114-98c3-51e7c52c8d53";
+  // await AppCenter.start(app_secret, [AppCenterAnalytics.id, AppCenterCrashes.id]);
+
   WidgetsFlutterBinding.ensureInitialized();
 
   runApp(MultiProvider(
