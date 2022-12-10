@@ -6,9 +6,7 @@ import 'package:scrappy/model/achiever.dart';
 
 import 'package:provider/provider.dart';
 import 'package:scrappy/components/deposit/recentDeposits.dart';
-import 'package:scrappy/fetchLeaderboard.dart';
-
-
+import 'package:scrappy/pages/leaderboard/fetchLeaderboard.dart';
 
 class Board extends StatefulWidget {
   const Board({Key? key}) : super(key: key);
@@ -33,27 +31,120 @@ class _BoardState extends State<Board> {
     return SafeArea(
         child: Scaffold(
             appBar: AppBar(
-              title: Text("Leaderboard"),
-              backgroundColor: Color(0xFF003320),
+              title: const Text("Leaderboard"),
+              backgroundColor: const Color(0xFF003320),
             ),
-            drawer: PublicDrawer(),
+            drawer: const PublicDrawer(),
             body: FutureBuilder<List<Achiever>>(
               future: fetchLeaderboard(),
-              builder: (context, snapshot) {
+              builder: (context, AsyncSnapshot snapshot) {
                 if (snapshot.hasData) {
-                  return ListView.builder(
-                    itemCount: snapshot.data!.length,
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Text(snapshot.data![index].fields.name),
-                        subtitle: Text(snapshot.data![index].fields.points.toString()),
-                      );
-                    },
+                  return SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.only(top: 20),
+                          child: const Text(
+                            "Leaderboard",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 30,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(top: 10, bottom: 25),
+                          child: const Text(
+                            "Top 10 Achievers",
+                            style: TextStyle(
+                              fontSize: 20,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 600,
+                          child: ListView.separated(
+                            itemCount: snapshot.data!.length,
+                            itemBuilder: (context, index) {
+                              return ListTile(
+                                title: Text(snapshot.data![index].fields.name),
+                                leading: Text("#${index + 1}"),
+                                trailing: Text(snapshot
+                                    .data![index].fields.points
+                                    .toString()),
+                                // trailing: Text("haloooooo ")
+                              );
+                            },
+                            separatorBuilder:
+                                (BuildContext context, int index) =>
+                                    const Divider(),
+                          ),
+                        ),
+                      ],
+                    ),
                   );
+                  
+                  // Column(
+                  //   children: [
+                  //     Container(
+                  //       child: SizedBox(
+                  //         height: 600,
+                  //         child: ListView.separated(
+                  //           itemCount: snapshot.data!.length,
+                  //           itemBuilder: (context, index) {
+                  //             return ListTile(
+                  //               title: Text(snapshot.data![index].fields.name),
+                  //               leading: Text("#${index + 1}"),
+                  //               trailing: Text(snapshot
+                  //                   .data![index].fields.points
+                  //                   .toString()),
+                  //               // trailing: Text("haloooooo ")
+                  //             );
+                  //           },
+                  //           separatorBuilder:
+                  //               (BuildContext context, int index) =>
+                  //                   const Divider(),
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ],
+                  // );
+                  // Container(
+                  //   child:
+                  //   SizedBox(
+                  //     height: 600,
+                  //     child:
+                  //     ListView.separated(
+                  //       itemCount: snapshot.data!.length,
+                  //       itemBuilder: (context, index) {
+                  //         return ListTile(
+                  //           title: Text(snapshot.data![index].fields.name),
+                  //           leading: Text("#${index + 1}"),
+                  //           trailing: Text(
+                  //               snapshot.data![index].fields.points.toString()),
+                  //           // trailing: Text("haloooooo ")
+                  //         );
+                  //       },
+                  //       separatorBuilder: (BuildContext context, int index) =>
+                  //           const Divider(),
+                  //     ),
+                  //   ),
+                  // );
+
+                  // return ListView.builder(
+                  //   itemCount: snapshot.data!.length,
+                  //   itemBuilder: (context, index) {
+                  //     return ListTile(
+                  //       title: Text(snapshot.data![index].fields.name),
+                  //       subtitle: Text(snapshot.data![index].fields.points.toString()),
+
+                  //     );
+                  //   },
+                  // );
                 } else if (snapshot.hasError) {
                   return Text("${snapshot.error}");
                 }
-                return const Center(child: CircularProgressIndicator());
+                return const Center(child: const CircularProgressIndicator());
               },
             )));
   }
