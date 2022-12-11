@@ -1,7 +1,6 @@
 // ignore_for_file: file_names
 
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
@@ -19,7 +18,7 @@ class _CommentFormState extends State<CommentFormPage> {
   final _formKey = GlobalKey<FormState>();
 
   /// Form Data (state) */
-  String _comment = '';
+  String _comment = "";
 
   @override
   Widget build(BuildContext context) {
@@ -58,9 +57,8 @@ class _CommentFormState extends State<CommentFormPage> {
                             } else {
                               try {
                                 // equivalent to tryParse
-                                String num = value;
                                 // side effect (update state)
-                                setState(() => _comment = num);
+                                setState(() => _comment = value);
                               } on FormatException {
                                 return 'Comment must be a valid number.';
                               }
@@ -68,7 +66,6 @@ class _CommentFormState extends State<CommentFormPage> {
                             }
                           },
                         ),
-
                         const Padding(padding: EdgeInsets.all(20.0)),
                         TextButton(
                           style: ButtonStyle(
@@ -80,10 +77,9 @@ class _CommentFormState extends State<CommentFormPage> {
                             if (_formKey.currentState!.validate()) {
                               // send data to server
                               final response = await request.post(
-                                '$SITE_URL/leaderboard/submit/',
+                                '$SITE_URL/leaderboard/submit/flutter/',
                                 jsonEncode({
                                   'comment': _comment,
-
                                 }),
                               );
                               // response SHOULD be in json form
