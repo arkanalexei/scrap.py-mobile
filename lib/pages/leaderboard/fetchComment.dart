@@ -1,4 +1,6 @@
-// TODO Implement this library.
+// Implement this library.
+// ignore_for_file: file_names
+
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:scrappy/model/comment.dart';

@@ -36,24 +36,24 @@ class _PublicDrawerState extends State<PublicDrawer> {
             // Menambahkan clickable menu
 
             ListTile(
-              leading: Icon(Icons.recycling),
-              iconColor: Color(0xFF003320),
+              leading: const Icon(Icons.recycling),
+              iconColor: const Color(0xFF003320),
               title: const Text("Home"),
               onTap: () {
                 // Route menu ke halaman utama
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => MyHomePage()),
+                  MaterialPageRoute(builder: (context) => const MyHomePage()),
                 );
               },
             ),
            
             ExpansionTile(
-              leading: Icon(Icons.person),
-              iconColor: Color(0xFF003320),
-              collapsedIconColor: Color(0xFF003320),
-              title: Text("User"),
-              textColor: Color(0xFF198F85),
+              leading: const Icon(Icons.person),
+              iconColor: const Color(0xFF003320),
+              collapsedIconColor: const Color(0xFF003320),
+              title: const Text("User"),
+              textColor: const Color(0xFF198F85),
               children: [
                 Visibility(
                   visible: !context.watch<UserProvider>().getLogin,
@@ -63,7 +63,7 @@ class _PublicDrawerState extends State<PublicDrawer> {
                       // Route menu ke halaman form
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (context) => LoginPage()),
+                        MaterialPageRoute(builder: (context) => const LoginPage()),
                       );
                     },
                   ),
@@ -76,7 +76,7 @@ class _PublicDrawerState extends State<PublicDrawer> {
                       // Route menu ke halaman form
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (context) => RegisterPage()),
+                        MaterialPageRoute(builder: (context) => const RegisterPage()),
                       );
                     },
                   ),
@@ -95,7 +95,7 @@ class _PublicDrawerState extends State<PublicDrawer> {
 
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (context) => LoginPage()),
+                        MaterialPageRoute(builder: (context) => const LoginPage()),
                       );
                     },
                   ),
@@ -104,11 +104,11 @@ class _PublicDrawerState extends State<PublicDrawer> {
             ),
 
             ExpansionTile(
-              leading: Icon(Icons.article),
-              iconColor: Color(0xFF003320),
-              collapsedIconColor: Color(0xFF003320),
-              title: Text("News"),
-              textColor: Color(0xFF198F85),
+              leading: const Icon(Icons.article),
+              iconColor: const Color(0xFF003320),
+              collapsedIconColor: const Color(0xFF003320),
+              title: const Text("News"),
+              textColor: const Color(0xFF198F85),
               children: [
                 ListTile(
                   title: const Text('News List'),
@@ -116,7 +116,7 @@ class _PublicDrawerState extends State<PublicDrawer> {
                     // Route menu ke halaman form
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => NewsList()),
+                      MaterialPageRoute(builder: (context) => const NewsList()),
                     );
                   },
                 ),
@@ -128,7 +128,7 @@ class _PublicDrawerState extends State<PublicDrawer> {
                       // Route menu ke halaman form
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (context) => NewsSubmit()),
+                        MaterialPageRoute(builder: (context) => const NewsSubmit()),
                       );
                     },
                   ),
@@ -137,10 +137,10 @@ class _PublicDrawerState extends State<PublicDrawer> {
             ),
             ExpansionTile(
               leading: const Icon(Icons.airline_seat_recline_normal_sharp),
-              iconColor: Color(0xFF003320),
-              collapsedIconColor: Color(0xFF003320),
-              title: Text("Deposit"),
-              textColor: Color(0xFF198F85),
+              iconColor: const Color(0xFF003320),
+              collapsedIconColor: const Color(0xFF003320),
+              title: const Text("Deposit"),
+              textColor: const Color(0xFF198F85),
               children: [
                 ListTile(
                   title: const Text('Deposit Page'),
@@ -171,10 +171,10 @@ class _PublicDrawerState extends State<PublicDrawer> {
             ),
             ExpansionTile(
               leading: const Icon(Icons.leaderboard_rounded),
-              iconColor: Color(0xFF003320),
-              collapsedIconColor: Color(0xFF003320),
-              title: Text("Leaderboard"),
-              textColor: Color(0xFF198F85),
+              iconColor: const Color(0xFF003320),
+              collapsedIconColor: const Color(0xFF003320),
+              title: const Text("Leaderboard"),
+              textColor: const Color(0xFF198F85),
               children: [
                 ListTile(
                   title: const Text('Leaderboard'),

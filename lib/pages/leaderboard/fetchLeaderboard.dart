@@ -1,4 +1,4 @@
-// TODO Implement this library.
+// Implement this library.
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:scrappy/model/achiever.dart';

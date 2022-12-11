@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:scrappy/main.dart';
 import 'package:scrappy/drawer.dart';
 import 'package:intl/intl.dart';
 import 'package:scrappy/model/achiever.dart';
-
 import 'package:provider/provider.dart';
-import 'package:scrappy/components/deposit/recentDeposits.dart';
 import 'package:scrappy/model/comment.dart';
 import 'package:scrappy/pages/leaderboard/fetchLeaderboard.dart';
 import 'package:scrappy/pages/leaderboard/fetchComment.dart';
 
 
 import '../../providers/userProvider.dart';
-import '../deposit/form.dart';
 import 'formComment.dart';
 
 class Board extends StatefulWidget {
@@ -96,7 +92,7 @@ class _BoardState extends State<Board> {
                       } else if (snapshot.hasError) {
                         return Text("${snapshot.error}");
                       }
-                      return const Center(child: const CircularProgressIndicator());
+                      return const Center(child: CircularProgressIndicator());
                     },
                   ),
                   // little gap
@@ -158,7 +154,7 @@ class _BoardState extends State<Board> {
                             } else if (snapshot.hasError) {
                               return Text("${snapshot.error}");
                             }
-                            return const Center(child: const CircularProgressIndicator());
+                            return const Center(child: CircularProgressIndicator());
                           },
                         ),
                         Container(
