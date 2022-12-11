@@ -1,5 +1,6 @@
+// ignore_for_file: file_names
+
 import 'dart:convert';
-// import 'dart:ffi';
 
 List<WasteDeposit> wasteDepositFromJson(String str) => List<WasteDeposit>.from(
       json.decode(str).map((x) => WasteDeposit.fromJson(x)),
@@ -38,21 +39,21 @@ class Fields {
     required this.user,
     required this.mass,
     required this.description,
-    required this.date_time,
+    required this.dateTime,
     required this.type,
   });
 
   int user; // automatic
   double mass;
   String description;
-  DateTime date_time; // automatic
+  DateTime dateTime; // automatic
   String type;
 
   factory Fields.fromJson(Map<String, dynamic> json) => Fields(
         user: json["user"],
         mass: json["mass"],
         description: json["description"],
-        date_time: DateTime.parse(json["date_time"]),
+        dateTime: DateTime.parse(json["date_time"]),
         type: json["type"],
       );
 
@@ -61,7 +62,7 @@ class Fields {
         "mass": mass,
         "description": description,
         "date_time":
-            "${date_time.year.toString().padLeft(4, '0')}-${date_time.month.toString().padLeft(2, '0')}-${date_time.day.toString().padLeft(2, '0')}",
+            "${dateTime.year.toString().padLeft(4, '0')}-${dateTime.month.toString().padLeft(2, '0')}-${dateTime.day.toString().padLeft(2, '0')}",
         "type": type,
       };
 }

@@ -16,7 +16,7 @@ void main() async {
         create: (_) => UserProvider(),
       ),
     ],
-    child: MyApp(),
+    child: const MyApp(),
   ));
 }
 
@@ -68,12 +68,12 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-        drawer: PublicDrawer(),
+        drawer: const PublicDrawer(),
         appBar: AppBar(
           // Here we take the value from the MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
-          title: Text("Home"),
-          backgroundColor: Color(0xFF003320),
+          title: const Text("Home"),
+          backgroundColor: const Color(0xFF003320),
         ),
         body: SafeArea(
           child: Center(
@@ -81,13 +81,13 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.recycling,
                     size: 100,
                     color: Color(0xFF003320),
                   ),
-                  SizedBox(height: 20),
-                  Text(
+                  const SizedBox(height: 20),
+                  const Text(
                     'Scrap.py',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -97,7 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   const SizedBox(height: 20),
                   Visibility(
                     visible: !context.watch<UserProvider>().getLogin,
-                    child: Text("Login to see full features!"),
+                    child: const Text("Login to see full features!"),
                   ),
                   Visibility(
                     visible: context.watch<UserProvider>().getLogin,

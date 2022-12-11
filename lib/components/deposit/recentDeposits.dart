@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -12,12 +14,12 @@ class RecentDeposits extends StatefulWidget {
   const RecentDeposits({Key? key}) : super(key: key);
 
   @override
-  _RecentDepositsState createState() => _RecentDepositsState();
+  RecentDepositsState createState() => RecentDepositsState();
 }
 
-class _RecentDepositsState extends State<RecentDeposits> {
-  final _registerFormKey = GlobalKey<FormState>();
+class RecentDepositsState extends State<RecentDeposits> {
   late final Future completedFuture;
+
   @override
   void initState() {
     super.initState();
@@ -42,14 +44,14 @@ class _RecentDepositsState extends State<RecentDeposits> {
                 ],
               );
             } else {
-              return WidgetsFromList(snapshot.data!);
+              return widgetify(snapshot.data!);
             }
           }
         });
   }
 }
 
-Widget WidgetsFromList(List<dynamic> data) {
+Widget widgetify(List<dynamic> data) {
   List<Widget> arr = List<Widget>.generate(
     min(data.length, 4),
     (index) => DepositCard(
