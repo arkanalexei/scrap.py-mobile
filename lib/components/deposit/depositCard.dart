@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:scrappy/components/deposit/depositDetailPage.dart';
@@ -33,11 +35,12 @@ class DepositCard extends StatelessWidget {
               children: [
                 Text(
                   deposit.fields.description,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 16),
                 ),
                 Text(
-                  DateFormat('dd MMMM yyyy').format(deposit.fields.date_time),
-                  style: TextStyle(fontSize: 11),
+                  DateFormat('dd MMMM yyyy').format(deposit.fields.dateTime),
+                  style: const TextStyle(fontSize: 11),
                 ),
                 const Divider(),
                 Text(

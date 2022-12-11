@@ -1,7 +1,8 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:scrappy/model/depositItem.dart';
-import 'package:scrappy/pages/deposit/deposit.dart';
 
 import '../../drawer.dart';
 
@@ -22,7 +23,7 @@ class DepositDetailPage extends StatelessWidget {
         backgroundColor: const Color(0xFF003320),
       ),
       body: SafeArea(
-        minimum: EdgeInsets.all(80),
+        minimum: const EdgeInsets.all(80),
         child: Row(
           children: [
             // const BackButton(
@@ -53,13 +54,14 @@ class DepositDetailPage extends StatelessWidget {
                       const Padding(padding: EdgeInsets.all(25)),
                       Text(
                         'Deposit #${deposit.pk} by user ${deposit.fields.user.toString()}',
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontWeight: FontWeight.w800, fontSize: 36),
                       ),
                       Text(
                         DateFormat('dd MMMM yyyy - hh:mm')
-                            .format(deposit.fields.date_time),
-                        style: TextStyle(fontSize: 14, color: Colors.grey),
+                            .format(deposit.fields.dateTime),
+                        style:
+                            const TextStyle(fontSize: 14, color: Colors.grey),
                       ),
                       const Padding(padding: EdgeInsets.all(10)),
                       const Divider(thickness: 2, color: Colors.black),
