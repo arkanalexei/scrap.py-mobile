@@ -38,7 +38,7 @@ class DepositHomePage extends StatelessWidget {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => DepositFormPage()),
+                              builder: (context) => const DepositFormPage()),
                         );
                       },
                       child: const Padding(
