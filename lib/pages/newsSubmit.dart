@@ -143,7 +143,9 @@ class _NewsSubmitState extends State<NewsSubmit> {
                                 },
                               );
 
-                              // Code here will run if the login succeeded.
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(content: Text(response['message'])));
+
                               Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
