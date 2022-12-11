@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:scrappy/main.dart';
 import 'package:scrappy/pages/deposit/deposit.dart';
 import 'package:scrappy/pages/deposit/form.dart';
+import 'package:scrappy/pages/tukarpoin/redeem.dart';
 import 'package:scrappy/pages/login.dart';
 import 'package:scrappy/pages/register.dart';
 import 'package:scrappy/pages/newsList.dart';
@@ -44,7 +45,7 @@ class _PublicDrawerState extends State<PublicDrawer> {
                 );
               },
             ),
-           
+
             ExpansionTile(
               leading: Icon(Icons.person),
               iconColor: Color(0xFF003320),
@@ -84,6 +85,7 @@ class _PublicDrawerState extends State<PublicDrawer> {
                     title: const Text('Logout'),
                     onTap: () async {
                       // Route menu ke halaman form
+                      // final response = await request.logout('https://scrappy.up.railway.app/logout/');
                       final response = await request
                           .get("https://scrappy.up.railway.app/logout/");
 
@@ -165,6 +167,29 @@ class _PublicDrawerState extends State<PublicDrawer> {
                   ),
                 ),
               ],
+            ),
+
+            Visibility(
+              visible: context.watch<UserProvider>().getLogin,
+              child: ExpansionTile(
+                leading: Icon(Icons.article),
+                iconColor: Color(0xFF003320),
+                collapsedIconColor: Color(0xFF003320),
+                title: Text("Tukar Poin"),
+                textColor: Color(0xFF198F85),
+                children: [
+                  ListTile(
+                    title: Text("Create"),
+                    onTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const Redeem())
+                      );
+                    }
+                  ),
+                ],
+              ),
             ),
           ],
         ),
