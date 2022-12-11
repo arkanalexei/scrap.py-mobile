@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:scrappy/drawer.dart';
 import 'package:intl/intl.dart';
 import 'package:scrappy/model/achiever.dart';
+
 import 'package:provider/provider.dart';
 import 'package:scrappy/model/comment.dart';
 import 'package:scrappy/pages/leaderboard/fetchLeaderboard.dart';
