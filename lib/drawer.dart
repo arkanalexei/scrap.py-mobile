@@ -6,6 +6,8 @@ import 'package:scrappy/pages/about/aboutUs.dart';
 import 'package:scrappy/pages/about/feedback.dart';
 import 'package:scrappy/pages/about/feedbackform.dart';
 import 'package:scrappy/pages/leaderboard/formComment.dart';
+import 'package:scrappy/pages/tukarpoin/createPerks.dart';
+import 'package:scrappy/pages/tukarpoin/redeem.dart';
 import 'package:scrappy/pages/user/login.dart';
 import 'package:scrappy/pages/user/register.dart';
 import 'package:scrappy/pages/news/newsList.dart';
@@ -189,6 +191,38 @@ class _PublicDrawerState extends State<PublicDrawer> {
                   ),
                 ),
               ],
+            ),
+
+            Visibility(
+              visible: context.watch<UserProvider>().getLogin,
+              child: ExpansionTile(
+                leading: Icon(Icons.article),
+                iconColor: Color(0xFF003320),
+                collapsedIconColor: Color(0xFF003320),
+                title: Text("Tukar Poin"),
+                textColor: Color(0xFF198F85),
+                children: [
+                  ListTile(
+                      title: Text("Perks"),
+                      onTap: () {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Redeem()));
+                      }),
+                  Visibility(
+                    visible: context.watch<UserProvider>().getAdmin,
+                    child: ListTile(
+                        title: Text("Create"),
+                        onTap: () {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const CreatePerks()));
+                        }),
+                  ),
+                ],
+              ),
             ),
 
             ExpansionTile(
