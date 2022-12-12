@@ -76,7 +76,8 @@ class _BoardState extends State<Board> {
                                   decoration: BoxDecoration(
                                       border: Border.all(
                                           color: Color(0xFF003320), width: 2.5),
-                                      color: Colors.white,
+                                      
+                                  color: Colors.green.shade50,
                                       borderRadius: BorderRadius.circular(15.0),
                                       boxShadow: const [
                                         BoxShadow(
@@ -269,7 +270,9 @@ class _BoardState extends State<Board> {
                   //if not login
                   Visibility(
                       visible: !context.watch<UserProvider>().getLogin,
+                      
                       child: Container(
+                          
                           margin: const EdgeInsets.only(left: 10, top: 10),
                           child: Column(
                             children: const [
