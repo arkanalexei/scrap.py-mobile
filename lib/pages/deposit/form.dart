@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:scrappy/drawer.dart';
-import 'package:scrappy/pages/deposit/deposit.dart';
 import '../../providers/constants.dart';
 
 class DepositFormPage extends StatefulWidget {
@@ -17,7 +16,7 @@ class DepositFormPage extends StatefulWidget {
 class _DepositFormState extends State<DepositFormPage> {
   final _formKey = GlobalKey<FormState>();
 
-  /** Form Data (state) */
+  /// Form Data (state)
   double _mass = 0.0;
   String _description = "";
   String _type = "PLASTIK";
@@ -160,12 +159,17 @@ class _DepositFormState extends State<DepositFormPage> {
                             } else {
                               msg = "Invalid form. Recheck your data.";
                             }
+                            // ignore: use_build_context_synchronously
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(SnackBar(content: Text(msg)));
                           },
-                          child: const Text(
-                            "Submit",
-                            style: TextStyle(color: Colors.white),
+                          child: const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text(
+                              "Submit",
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.white),
+                            ),
                           ),
                         ),
                       ],
