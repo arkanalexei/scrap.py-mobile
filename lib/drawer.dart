@@ -5,7 +5,6 @@ import 'package:scrappy/pages/deposit/form.dart';
 import 'package:scrappy/pages/about/aboutUs.dart';
 import 'package:scrappy/pages/about/feedback.dart';
 import 'package:scrappy/pages/about/feedbackform.dart';
-import 'package:scrappy/pages/leaderboard/formComment.dart';
 import 'package:scrappy/pages/tukarpoin/createPerks.dart';
 import 'package:scrappy/pages/tukarpoin/redeem.dart';
 import 'package:scrappy/pages/user/login.dart';
@@ -96,6 +95,7 @@ class _PublicDrawerState extends State<PublicDrawer> {
                       // final response = await request
                       //     .get("https://scrappy.up.railway.app/logout/");
 
+                      // ignore: unused_local_variable
                       final response = await request.logout("https://scrappy.up.railway.app/logout/");
 
                       context.read<UserProvider>().saveAdmin(false);

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:scrappy/main.dart';
 import 'package:scrappy/drawer.dart';
-import 'package:scrappy/pages/news/newsPage.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:scrappy/pages/tukarpoin/fetchPerks.dart';
@@ -15,6 +13,7 @@ class Redeem extends StatefulWidget {
 }
 
 class _RedeemState extends State<Redeem> {
+  // ignore: unused_field
   final _registerFormKey = GlobalKey<FormState>();
   late final Future finalFuture;
   @override
