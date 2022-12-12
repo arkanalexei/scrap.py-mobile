@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:scrappy/main.dart';
 import 'package:scrappy/drawer.dart';
 import 'package:intl/intl.dart';
 

@@ -1,12 +1,7 @@
-// import 'dart:html';
-import 'dart:io';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:scrappy/pages/user/login.dart';
-import 'package:scrappy/main.dart';
 import 'package:scrappy/drawer.dart';
 
 class RegisterPage extends StatefulWidget {

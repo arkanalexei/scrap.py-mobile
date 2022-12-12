@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:scrappy/model/feedbackItem.dart';
-import 'package:scrappy/pages/about/feedback.dart';
 
 import '../../drawer.dart';
 
