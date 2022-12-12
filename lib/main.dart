@@ -114,6 +114,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: PieChart(
                       dataMap: context.watch<UserProvider>().getDataMap,
                       chartRadius: MediaQuery.of(context).size.width / 2.4,
+                      legendOptions: LegendOptions(
+                        legendPosition: LegendPosition.bottom
+                      ),
                     ),
                   ),
                 ],
