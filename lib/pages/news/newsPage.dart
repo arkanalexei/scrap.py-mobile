@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter/material.dart';
 import 'package:scrappy/drawer.dart';
 import 'package:intl/intl.dart';
@@ -21,6 +23,7 @@ class NewsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     // var date = date.toString().substring(0, 10);
     var dateStr = DateFormat('yMMMMd').format(date);
+    
     var pkStr = pk.toString();
     var userStr = user.toString();
 

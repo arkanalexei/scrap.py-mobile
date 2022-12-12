@@ -95,6 +95,7 @@ class _PublicDrawerState extends State<PublicDrawer> {
                       // final response = await request
                       //     .get("https://scrappy.up.railway.app/logout/");
 
+                      // ignore: unused_local_variable
                       final response = await request.logout("https://scrappy.up.railway.app/logout/");
 
                       context.read<UserProvider>().saveAdmin(false);

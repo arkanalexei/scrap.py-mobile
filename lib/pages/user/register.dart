@@ -12,6 +12,7 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  // ignore: unused_field
   final _registerFormKey = GlobalKey<FormState>();
   bool isPasswordVisible = false;
   void togglePasswordView() {

@@ -20,6 +20,7 @@ class Board extends StatefulWidget {
 }
 
 class _BoardState extends State<Board> {
+  // ignore: unused_field
   final _registerFormKey = GlobalKey<FormState>();
   late final Future finalFuture;
 

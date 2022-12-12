@@ -14,6 +14,7 @@ class NewsList extends StatefulWidget {
 }
 
 class _NewsListState extends State<NewsList> {
+  // ignore: unused_field
   final _registerFormKey = GlobalKey<FormState>();
   late final Future finalFuture;
   @override

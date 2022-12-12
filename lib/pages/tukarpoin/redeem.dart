@@ -13,6 +13,7 @@ class Redeem extends StatefulWidget {
 }
 
 class _RedeemState extends State<Redeem> {
+  // ignore: unused_field
   final _registerFormKey = GlobalKey<FormState>();
   late final Future finalFuture;
   @override
