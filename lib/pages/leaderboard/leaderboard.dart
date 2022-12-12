@@ -92,23 +92,23 @@ class _BoardState extends State<Board> {
                                           itemBuilder: (context, index) {
                                             return const ListTile(
                                               title: Text(
-                                                "Name",
+                                                "Username",
                                                 style: TextStyle(
                                                   fontWeight: FontWeight.bold,
-                                                  fontSize: 15,
+                                                  fontSize: 17,
                                                 ),
                                               ),
                                               leading: Text(
-                                                "#Rank",
+                                                "#",
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.bold,
-                                                    fontSize: 15),
+                                                    fontSize: 17),
                                               ),
                                               trailing: Text(
                                                 "Points",
                                                 style: TextStyle(
                                                   fontWeight: FontWeight.bold,
-                                                  fontSize: 15,
+                                                  fontSize: 17,
                                                 ),
                                               ),
                                             );
@@ -241,7 +241,9 @@ class _BoardState extends State<Board> {
                         Column(
                           children: [
                             Text(
-                                'Hi ${context.watch<UserProvider>().getUsername}! Write your comments here'),
+                                'Hi ${context.watch<UserProvider>().getUsername}! Write your comments here', 
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 15)),
                             Container(
                               margin: const EdgeInsets.only(
                                   left: 10, bottom: 10, top: 10),
