@@ -14,11 +14,11 @@ class AboutUsHomePage extends StatelessWidget {
         title: const Text("About Us"),
         backgroundColor: const Color(0xFF003320),
       ),
-      body: SafeArea(
-        minimum: const EdgeInsets.all(20),
+      body: SingleChildScrollView(
         child: Center(
           child: Column(
             children: [
+              const Text(""),
               
               ExpansionTile(
                 leading: Icon(Icons.question_mark),
@@ -46,15 +46,17 @@ class AboutUsHomePage extends StatelessWidget {
                 title: Text("Vision and Mission"),
                 textColor: Color.fromARGB(255, 255, 255, 255),
                 children: [
+                  const Text(""),
                   const Text("Our Vision", style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold)),
                   const Text("Providing ethical, independent, and responsible Waste Management Solutions to our community", style: TextStyle(color: Colors.white)),
                   const Text(""),
                   const Text("Our Mission", style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold)),
-                  const Text("Empowering Waste Segregation", style: TextStyle(color: Colors.white)),
+                  const Text("1. Empowering Waste Segregation", style: TextStyle(color: Colors.white)),
                   const Text(""),
-                  const Text("Increasing Community Participation in Environmental Management", style: TextStyle(color: Colors.white)),
+                  const Text("2. Increasing Community Participation in Environmental Management", style: TextStyle(color: Colors.white)),
                   const Text(""),
-                  const Text("Creating a More Creative, Innovative, Inspirational and Independent Society in the Field of Environmental Management", style: TextStyle(color: Colors.white)),
+                  const Text("3. Creating a More Creative, Innovative, Inspirational and Independent Society in the Field of Environmental Management", style: TextStyle(color: Colors.white)),
+                  const Text(""),
                 ],
               ),
 
@@ -68,11 +70,13 @@ class AboutUsHomePage extends StatelessWidget {
                 title: Text("Our Team"),
                 textColor: Color.fromARGB(255, 255, 255, 255),
                 children: [
-                  const Text("Arkan Alexei Andrei - 2106631463", style: TextStyle(color: Colors.white)),
-                  const Text("Givarrel Veivel Pattiwael - 2106640341", style: TextStyle(color: Colors.white)),
-                  const Text("Laela Putri Salsa Biella - 2106751562", style: TextStyle(color: Colors.white)),
-                  const Text("Abraham Javier Sebastian - 2106704364", style: TextStyle(color: Colors.white)),
-                  const Text("Inez Bungaria Octaviana - 2106751833", style: TextStyle(color: Colors.white)),
+                  const Text(""),
+                  const Text("Arkan Alexei Andrei - 2106631463", style: TextStyle(color: Colors.white, fontSize: 24)),
+                  const Text("Givarrel Veivel Pattiwael - 2106640341", style: TextStyle(color: Colors.white, fontSize: 24)),
+                  const Text("Laela Putri Salsa Biella - 2106751562", style: TextStyle(color: Colors.white, fontSize: 24)),
+                  const Text("Abraham Javier Sebastian - 2106704364", style: TextStyle(color: Colors.white, fontSize: 24)),
+                  const Text("Inez Bungaria Octaviana - 2106751833", style: TextStyle(color: Colors.white, fontSize: 24)),
+                  const Text(""),
                 ],
               ),
 
@@ -86,9 +90,11 @@ class AboutUsHomePage extends StatelessWidget {
                 title: Text("Contact Us"),
                 textColor: Color.fromARGB(255, 255, 255, 255),
                 children: [
-                  const Text("Instagram : @Scrappy", style: TextStyle(color: Colors.white)),
-                  const Text("Twitter   : @Scrappy", style: TextStyle(color: Colors.white)),
-                  const Text("Facebook  : @Scrappy", style: TextStyle(color: Colors.white)),
+                  const Text(""),
+                  const Text("Instagram : @Scrappy", style: TextStyle(color: Colors.white, fontSize: 24)),
+                  const Text("Twitter   : @Scrappy", style: TextStyle(color: Colors.white, fontSize: 24)),
+                  const Text("Facebook  : @Scrappy", style: TextStyle(color: Colors.white, fontSize: 24)),
+                  const Text(""),
                 ],
               ),
             ],

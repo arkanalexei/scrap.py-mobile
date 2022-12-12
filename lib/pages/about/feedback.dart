@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:scrappy/drawer.dart';
 import 'package:scrappy/components/feedback/recentFeedback.dart';
 import 'package:scrappy/providers/userProvider.dart';
-
+import 'package:scrappy/model/models_search.dart';
 import 'feedbackform.dart';
 
 class FeedbackHomePage extends StatelessWidget {
@@ -17,12 +17,13 @@ class FeedbackHomePage extends StatelessWidget {
         title: const Text("Feedback"),
         backgroundColor: const Color(0xFF003320),
       ),
+      
       body: SafeArea(
         minimum: const EdgeInsets.all(20),
         child: Center(
           child: Column(
             children: [
-              // const Text("Your Feedback History"),
+              
               Visibility(
                 visible: context.watch<UserProvider>().getLogin,
                 child: Column(
@@ -40,6 +41,7 @@ class FeedbackHomePage extends StatelessWidget {
                   ],
                 ),
               ),
+              
               Visibility(
                 visible: !context.watch<UserProvider>().getLogin,
                 child: const Text("Login to see and organize your feedback"),
