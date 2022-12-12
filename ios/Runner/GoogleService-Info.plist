@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>3094754161-jjjp2qb9mppglp3j7u5mcnrj30tsno53.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.3094754161-jjjp2qb9mppglp3j7u5mcnrj30tsno53</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBzUbresu6xaD51Sm2AUBasFTBkgzgptdo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>3094754161</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.scrappy</string>
+	<key>PROJECT_ID</key>
+	<string>scrappy-tk</string>
+	<key>STORAGE_BUCKET</key>
+	<string>scrappy-tk.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:3094754161:ios:781487683b8650af457cd0</string>
+</dict>
+</plist>
