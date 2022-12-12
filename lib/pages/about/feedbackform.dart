@@ -119,7 +119,7 @@ class _FeedbackFormState extends State<FeedbackFormPage> {
                             String notes = "";
                             if (_feedbackFormKey.currentState!.validate()) {
                               final response = await request.post(
-                                '$SITE_URL/about/json/',
+                                '$SITE_URL/about/submit/',
                                 jsonEncode({
                                   'name': _name,
                                   'message': _message,
