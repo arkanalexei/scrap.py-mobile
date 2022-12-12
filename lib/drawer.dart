@@ -2,10 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:scrappy/main.dart';
 import 'package:scrappy/pages/deposit/deposit.dart';
 import 'package:scrappy/pages/deposit/form.dart';
-import 'package:scrappy/pages/login.dart';
-import 'package:scrappy/pages/register.dart';
-import 'package:scrappy/pages/newsList.dart';
-import 'package:scrappy/pages/newsSubmit.dart';
+import 'package:scrappy/pages/about/aboutUs.dart';
+import 'package:scrappy/pages/about/feedback.dart';
+import 'package:scrappy/pages/about/feedbackform.dart';
+import 'package:scrappy/pages/leaderboard/formComment.dart';
+import 'package:scrappy/pages/tukarpoin/createPerks.dart';
+import 'package:scrappy/pages/tukarpoin/redeem.dart';
+import 'package:scrappy/pages/user/login.dart';
+import 'package:scrappy/pages/user/register.dart';
+import 'package:scrappy/pages/news/newsList.dart';
+import 'package:scrappy/pages/news/newsSubmit.dart';
+// leaderboard
+import 'package:scrappy/pages/leaderboard/leaderboard.dart';
+
 import 'package:scrappy/providers/userProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -33,24 +42,24 @@ class _PublicDrawerState extends State<PublicDrawer> {
             // Menambahkan clickable menu
 
             ListTile(
-              leading: Icon(Icons.recycling),
-              iconColor: Color(0xFF003320),
+              leading: const Icon(Icons.recycling),
+              iconColor: const Color(0xFF003320),
               title: const Text("Home"),
               onTap: () {
                 // Route menu ke halaman utama
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => MyHomePage()),
+                  MaterialPageRoute(builder: (context) => const MyHomePage()),
                 );
               },
             ),
            
             ExpansionTile(
-              leading: Icon(Icons.person),
-              iconColor: Color(0xFF003320),
-              collapsedIconColor: Color(0xFF003320),
-              title: Text("User"),
-              textColor: Color(0xFF198F85),
+              leading: const Icon(Icons.person),
+              iconColor: const Color(0xFF003320),
+              collapsedIconColor: const Color(0xFF003320),
+              title: const Text("User"),
+              textColor: const Color(0xFF198F85),
               children: [
                 Visibility(
                   visible: !context.watch<UserProvider>().getLogin,
@@ -60,7 +69,7 @@ class _PublicDrawerState extends State<PublicDrawer> {
                       // Route menu ke halaman form
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (context) => LoginPage()),
+                        MaterialPageRoute(builder: (context) => const LoginPage()),
                       );
                     },
                   ),
@@ -73,7 +82,7 @@ class _PublicDrawerState extends State<PublicDrawer> {
                       // Route menu ke halaman form
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (context) => RegisterPage()),
+                        MaterialPageRoute(builder: (context) => const RegisterPage()),
                       );
                     },
                   ),
@@ -84,15 +93,17 @@ class _PublicDrawerState extends State<PublicDrawer> {
                     title: const Text('Logout'),
                     onTap: () async {
                       // Route menu ke halaman form
-                      final response = await request
-                          .get("https://scrappy.up.railway.app/logout/");
+                      // final response = await request
+                      //     .get("https://scrappy.up.railway.app/logout/");
+
+                      final response = await request.logout("https://scrappy.up.railway.app/logout/");
 
                       context.read<UserProvider>().saveAdmin(false);
                       context.read<UserProvider>().saveLogin(false);
 
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (context) => LoginPage()),
+                        MaterialPageRoute(builder: (context) => const LoginPage()),
                       );
                     },
                   ),
@@ -101,11 +112,11 @@ class _PublicDrawerState extends State<PublicDrawer> {
             ),
 
             ExpansionTile(
-              leading: Icon(Icons.article),
-              iconColor: Color(0xFF003320),
-              collapsedIconColor: Color(0xFF003320),
-              title: Text("News"),
-              textColor: Color(0xFF198F85),
+              leading: const Icon(Icons.article),
+              iconColor: const Color(0xFF003320),
+              collapsedIconColor: const Color(0xFF003320),
+              title: const Text("News"),
+              textColor: const Color(0xFF198F85),
               children: [
                 ListTile(
                   title: const Text('News List'),
@@ -113,7 +124,7 @@ class _PublicDrawerState extends State<PublicDrawer> {
                     // Route menu ke halaman form
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => NewsList()),
+                      MaterialPageRoute(builder: (context) => const NewsList()),
                     );
                   },
                 ),
@@ -125,19 +136,101 @@ class _PublicDrawerState extends State<PublicDrawer> {
                       // Route menu ke halaman form
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (context) => NewsSubmit()),
+                        MaterialPageRoute(builder: (context) => const NewsSubmit()),
                       );
                     },
                   ),
                 ),
               ],
             ),
+
             ExpansionTile(
-              leading: const Icon(Icons.airline_seat_recline_normal_sharp),
+              leading: const Icon(Icons.corporate_fare),
               iconColor: Color(0xFF003320),
               collapsedIconColor: Color(0xFF003320),
-              title: Text("Deposit"),
+              title: Text("About Us"),
               textColor: Color(0xFF198F85),
+              children: [
+                
+                ListTile(
+                  title: const Text('About Us'),
+                  onTap: () {
+                    // Route menu ke halaman form
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const AboutUsHomePage()),
+                    );
+                  },
+                ),
+
+                ListTile(
+                  title: const Text('Feedback Page'),
+                  onTap: () {
+                    // Route menu ke halaman form
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const FeedbackHomePage()),
+                    );
+                  },
+                ),
+
+                Visibility(
+                  visible: context.watch<UserProvider>().getLogin,
+                  child: ListTile(
+                    title: const Text('Feedback Form'),
+                    onTap: () {
+                      // Route menu ke halaman form
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const FeedbackFormPage()),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+
+            Visibility(
+              visible: context.watch<UserProvider>().getLogin,
+              child: ExpansionTile(
+                leading: Icon(Icons.article),
+                iconColor: Color(0xFF003320),
+                collapsedIconColor: Color(0xFF003320),
+                title: Text("Tukar Poin"),
+                textColor: Color(0xFF198F85),
+                children: [
+                  ListTile(
+                      title: Text("Perks"),
+                      onTap: () {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Redeem()));
+                      }),
+                  Visibility(
+                    visible: context.watch<UserProvider>().getAdmin,
+                    child: ListTile(
+                        title: Text("Create"),
+                        onTap: () {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const CreatePerks()));
+                        }),
+                  ),
+                ],
+              ),
+            ),
+
+            ExpansionTile(
+              leading: const Icon(Icons.airline_seat_recline_normal_sharp),
+              iconColor: const Color(0xFF003320),
+              collapsedIconColor: const Color(0xFF003320),
+              title: const Text("Deposit"),
+              textColor: const Color(0xFF198F85),
               children: [
                 ListTile(
                   title: const Text('Deposit Page'),
@@ -164,6 +257,40 @@ class _PublicDrawerState extends State<PublicDrawer> {
                     },
                   ),
                 ),
+              ],
+            ),
+            ExpansionTile(
+              leading: const Icon(Icons.leaderboard_rounded),
+              iconColor: const Color(0xFF003320),
+              collapsedIconColor: const Color(0xFF003320),
+              title: const Text("Leaderboard"),
+              textColor: const Color(0xFF198F85),
+              children: [
+                ListTile(
+                  title: const Text('Leaderboard'),
+                  onTap: () {
+                    // Route menu ke halaman form
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const Board()),
+                    );
+                  },
+                ),
+                // Visibility(
+                //   visible: context.watch<UserProvider>().getLogin,
+                //   child: ListTile(
+                //     title: const Text('Comment Form'),
+                //     onTap: () {
+                //       // Route menu ke halaman form
+                //       Navigator.pushReplacement(
+                //         context,
+                //         MaterialPageRoute(
+                //             builder: (context) => const CommentFormPage()),
+                //       );
+                //     },
+                //   ),
+                // ),
               ],
             ),
           ],

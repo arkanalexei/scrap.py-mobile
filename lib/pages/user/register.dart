@@ -5,7 +5,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
-import 'package:scrappy/pages/login.dart';
+import 'package:scrappy/pages/user/login.dart';
 import 'package:scrappy/main.dart';
 import 'package:scrappy/drawer.dart';
 
@@ -188,24 +188,31 @@ class _RegisterPageState extends State<RegisterPage> {
                     minimumSize: MaterialStateProperty.all(Size.fromHeight(40)),
                   ),
                   onPressed: () async {
-                    final response = await request
-                        .post("https://scrappy.up.railway.app/register/", {
+                    final response =
+                        await request.post("https://scrappy.up.railway.app/register/", {
                       'username': username,
                       'password1': password1,
                       'password2': password2,
                     });
 
-                    print(username);
-                    print(password1);
 
-                    // Code here will run if the login succeeded.
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                const MyHomePage()));
 
-                    // Code here will run if the login failed (wrong username/password).
+                    if (response['status'] == true) {
+                      // Code here will run if the register succeeded.
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text(response['message'])));
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  const LoginPage()));
+                    } else {
+                      // Code here will run if the register failed
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text(response['message'])));
+                    }
+
+                    
                   },
                 )),
               ),

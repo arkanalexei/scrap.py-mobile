@@ -1,33 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:scrappy/main.dart';
 import 'package:scrappy/drawer.dart';
-import 'package:scrappy/fetchNews.dart';
-import 'package:scrappy/pages/newsPage.dart';
+import 'package:scrappy/pages/news/newsPage.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
+import 'package:scrappy/pages/tukarpoin/fetchPerks.dart';
 import 'package:scrappy/providers/userProvider.dart';
 
-class NewsList extends StatefulWidget {
-  const NewsList({Key? key}) : super(key: key);
+class Redeem extends StatefulWidget {
+  const Redeem({Key? key}) : super(key: key);
 
   @override
-  _NewsListState createState() => _NewsListState();
+  _RedeemState createState() => _RedeemState();
 }
 
-class _NewsListState extends State<NewsList> {
+class _RedeemState extends State<Redeem> {
   final _registerFormKey = GlobalKey<FormState>();
   late final Future finalFuture;
   @override
   void initState() {
     super.initState();
-    finalFuture = fetchNews();
+    finalFuture = fetchPerks();
   }
 
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
     return Scaffold(
         appBar: AppBar(
-          title: Text('North Depok Morning Post'),
+          title: Text('You have ${context.watch<UserProvider>().getPoints} points'),
           backgroundColor: Color(0xFF003320),
         ),
 
@@ -55,22 +55,12 @@ class _NewsListState extends State<NewsList> {
                       itemCount: snapshot.data!.length,
                       itemBuilder: (_, index) => GestureDetector(
                           onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: ((context) => NewsPage(
-                                    pk: snapshot.data![index].pk,
-                                    title: snapshot.data![index].fields.title,
-                                    description: snapshot
-                                        .data![index].fields.description,
-                                    user: snapshot.data![index].fields.user,
-                                    date: snapshot.data![index].fields.date))));
                           },
                           child: Container(
                             margin: const EdgeInsets.symmetric(
                                 horizontal: 16, vertical: 12),
                             padding: const EdgeInsets.all(20.0),
                             decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: Color(0xFF003320), width: 2.5),
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(15.0),
                                 boxShadow: const [
@@ -87,7 +77,7 @@ class _NewsListState extends State<NewsList> {
                                   children: [
                                     Expanded(
                                       child: Text(
-                                        "${snapshot.data![index].fields.title}",
+                                        "${snapshot.data![index].fields.nama} - ${snapshot.data![index].fields.harga} points",
                                         style: const TextStyle(
                                           fontSize: 18.0,
                                           fontWeight: FontWeight.bold,
@@ -95,45 +85,20 @@ class _NewsListState extends State<NewsList> {
                                         overflow: TextOverflow.ellipsis,
                                       ),
                                     ),
-                                    // Visibility(
-                                    //   visible: context
-                                    //       .watch<UserProvider>()
-                                    //       .getAdmin,
-                                    //   child: TextButton(
-                                    //     child: Text(
-                                    //       "Delete",
-                                    //       style: TextStyle(
-                                    //         fontWeight: FontWeight.bold,
-                                    //         fontSize: 15,
-                                    //         color: Colors.red,
-                                    //       ),
-                                    //     ),
-                                    //     onPressed: () async {
-                                    //       var pk = snapshot.data![index].pk;
-                                    //       final response = await request.post(
-                                    //           "https://scrappy.up.railway.app/news/delete/$pk/",
-                                    //           {});
-                                    //     },
-                                    //   ),
-                                    // ),
+                                    
                                     Visibility(
                                       visible: context
                                           .watch<UserProvider>()
-                                          .getAdmin,
+                                          .getLogin,
                                       child: Padding(
                                         padding: const EdgeInsets.symmetric(
                                             horizontal: 25),
                                         child: Container(
-                                          padding: EdgeInsets.all(5),
-                                          decoration: BoxDecoration(
-                                            color: Colors.red,
-                                            borderRadius:
-                                                BorderRadius.circular(12),
-                                          ),
+                                          decoration: BoxDecoration(color: Colors.green),
                                           child: Center(
                                             child: TextButton(
                                               child: Text(
-                                                "Delete",
+                                                "Redeem",
                                                 style: TextStyle(
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 15,
@@ -144,15 +109,22 @@ class _NewsListState extends State<NewsList> {
                                                 var pk =
                                                     snapshot.data![index].pk;
                                                 final response = await request.post(
-                                                    "https://scrappy.up.railway.app/news/delete/$pk/",
+                                                    "https://scrappy.up.railway.app/tukarpoin/redeem/$pk/",
                                                     {});
+
+                                                context.read<UserProvider>().savePoints(response['points']);
+
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(SnackBar(
+                                                        content: Text(response[
+                                                            'message'])));
 
                                                 Navigator.pushReplacement(
                                                     context,
                                                     MaterialPageRoute(
                                                         builder: (BuildContext
                                                                 context) =>
-                                                            const NewsList()));
+                                                            const Redeem()));
                                               },
                                             ),
                                           ),

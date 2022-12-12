@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:scrappy/drawer.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
-import 'package:scrappy/pages/newsList.dart';
+import 'package:scrappy/pages/news/newsList.dart';
 
 
 class NewsSubmit extends StatefulWidget {
@@ -144,7 +144,9 @@ class _NewsSubmitState extends State<NewsSubmit> {
                                 },
                               );
 
-                              // Code here will run if the login succeeded.
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(content: Text(response['message'])));
+
                               Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
