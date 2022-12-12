@@ -70,38 +70,78 @@ class _BoardState extends State<Board> {
                                 ),
                               ),
                               Container(
-                                margin: const EdgeInsets.symmetric(
-                                horizontal: 16, vertical: 12),
-                                padding: const EdgeInsets.all(20.0),
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: Color(0xFF003320), width: 2.5),
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(15.0),
-                                  boxShadow: const [
-                                    BoxShadow(
-                                        color: Colors.black, blurRadius: 2.0)
-                                  ]),
-                                child: SizedBox(
-                                height: 650,
-                                child: ListView.separated(
-                                  itemCount: 10,
-                                  itemBuilder: (context, index) {
-                                    return ListTile(
-                                      title: Text(
-                                          snapshot.data![index].fields.name),
-                                      leading: Text("#${index + 1}"),
-                                      trailing: Text(snapshot
-                                          .data![index].fields.points
-                                          .toString()),
-                                    );
-                                  },
-                                  separatorBuilder:
-                                      (BuildContext context, int index) =>
-                                          const Divider(),
-                                ),
-                              ),
-                              ),
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 16, vertical: 12),
+                                  padding: const EdgeInsets.all(20.0),
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: Color(0xFF003320), width: 2.5),
+                                      
+                                  color: Colors.green.shade50,
+                                      borderRadius: BorderRadius.circular(15.0),
+                                      boxShadow: const [
+                                        BoxShadow(
+                                            color: Colors.black,
+                                            blurRadius: 2.0)
+                                      ]),
+                                  child: Column(
+                                    children: [
+                                      SizedBox(
+                                        height: 50,
+                                        child: ListView.separated(
+                                          itemCount: 1,
+                                          itemBuilder: (context, index) {
+                                            return const ListTile(
+                                              title: Text(
+                                                "Username",
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 17,
+                                                ),
+                                              ),
+                                              leading: Text(
+                                                "#",
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 17),
+                                              ),
+                                              trailing: Text(
+                                                "Points",
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 17,
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                          separatorBuilder:
+                                              (BuildContext context,
+                                                      int index) =>
+                                                  const Divider(),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 650,
+                                        child: ListView.separated(
+                                          itemCount: 10,
+                                          itemBuilder: (context, index) {
+                                            return ListTile(
+                                              title: Text(snapshot
+                                                  .data![index].fields.name),
+                                              leading: Text("#${index + 1}"),
+                                              trailing: Text(snapshot
+                                                  .data![index].fields.points
+                                                  .toString()),
+                                            );
+                                          },
+                                          separatorBuilder:
+                                              (BuildContext context,
+                                                      int index) =>
+                                                  const Divider(),
+                                        ),
+                                      ),
+                                    ],
+                                  )),
                             ],
                           ),
                         );
@@ -141,36 +181,51 @@ class _BoardState extends State<Board> {
                           future: fetchComments(),
                           builder: (context, AsyncSnapshot snapshot) {
                             if (snapshot.hasData) {
-                              return SizedBox(
-                                height: 500,
-                                child: ListView.separated(
-                                  itemCount: 10,
-                                  itemBuilder: (context, index) {
-                                    return ListTile(
-                                      title: Text(
-                                          snapshot.data[index].fields.nama),
-                                      subtitle: Text(DateFormat('dd-MM-yyyy')
-                                          .format(snapshot
-                                              .data[index].fields.dateAdded)),
-                                      // trailing: Text('"${snapshot.data[index].fields.comment}"'),
-                                      //show the comment longer
+                              return Container(
+                                margin: const EdgeInsets.symmetric(
+                                    horizontal: 16, vertical: 12),
+                                padding: const EdgeInsets.all(20.0),
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: Color(0xFF003320), width: 2.5),
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(15.0),
+                                    boxShadow: const [
+                                      BoxShadow(
+                                          color: Colors.black, blurRadius: 2.0)
+                                    ]),
+                                child: SizedBox(
+                                  height: 500,
+                                  child: ListView.separated(
+                                    itemCount: 10,
+                                    itemBuilder: (context, index) {
+                                      return ListTile(
+                                        title: Text(
+                                            snapshot.data[index].fields.nama),
+                                        subtitle: Text(DateFormat('dd-MM-yyyy')
+                                            .format(snapshot
+                                                .data[index].fields.dateAdded)),
+                                        // trailing: Text('"${snapshot.data[index].fields.comment}"'),
+                                        //show the comment longer
 
-                                      trailing: Container(
-                                        margin: const EdgeInsets.only(top: 10),
-                                        child: SizedBox(
-                                          width: 450,
-                                          child: Text(
-                                            '"${snapshot.data[index].fields.comment}"',
-                                            overflow: TextOverflow.ellipsis,
-                                            maxLines: 7,
+                                        trailing: Container(
+                                          margin:
+                                              const EdgeInsets.only(top: 10),
+                                          child: SizedBox(
+                                            width: 450,
+                                            child: Text(
+                                              '"${snapshot.data[index].fields.comment}"',
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 7,
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    );
-                                  },
-                                  separatorBuilder:
-                                      (BuildContext context, int index) =>
-                                          const Divider(),
+                                      );
+                                    },
+                                    separatorBuilder:
+                                        (BuildContext context, int index) =>
+                                            const Divider(),
+                                  ),
                                 ),
                               );
                             } else if (snapshot.hasError) {
@@ -184,36 +239,27 @@ class _BoardState extends State<Board> {
                         // little gap
                         const Padding(padding: EdgeInsets.all(30.0)),
 
-                        Container(
-                          margin: const EdgeInsets.symmetric(
-                                horizontal: 25, vertical: 15),
-                          padding: const EdgeInsets.all(20.0),
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color:Color(0xFF003320), width: 2.5
+                        Column(
+                          children: [
+                            Text(
+                                'Hi ${context.watch<UserProvider>().getUsername}! Write your comments here', 
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 15)),
+                            Container(
+                              margin: const EdgeInsets.only(
+                                  left: 10, bottom: 10, top: 10),
+                              child: ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const CommentFormPage()),
+                                    );
+                                  },
+                                  child: const Text("Send Comment")),
                             ),
-                            borderRadius: BorderRadius.circular(15.0),
-                          ),
-                          child: Column(
-                            children: [
-                              Text(
-                                  'Hi ${context.watch<UserProvider>().getUsername}! Write your comments here'),
-                              Container(
-                                margin: const EdgeInsets.only(
-                                    left: 10, bottom: 10, top: 10),
-                                child: ElevatedButton(
-                                    onPressed: () {
-                                      Navigator.pushReplacement(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const CommentFormPage()),
-                                      );
-                                    },
-                                    child: const Text("Send Comment")),
-                              ),
-                            ],
-                          )
+                          ],
                         ),
                         //little gap
                         const Padding(padding: EdgeInsets.all(30.0)),
@@ -224,9 +270,10 @@ class _BoardState extends State<Board> {
                   //if not login
                   Visibility(
                       visible: !context.watch<UserProvider>().getLogin,
+                      
                       child: Container(
-                          margin: const EdgeInsets.only(
-                              left: 10, top: 10),
+                          
+                          margin: const EdgeInsets.only(left: 10, top: 10),
                           child: Column(
                             children: const [
                               Align(

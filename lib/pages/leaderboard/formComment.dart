@@ -1,5 +1,4 @@
 // ignore_for_file: file_names, use_build_context_synchronously, duplicate_ignore
-
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';

@@ -97,16 +97,19 @@ class _MyHomePageState extends State<MyHomePage> {
                     visible: !context.watch<UserProvider>().getLogin,
                     child: const Text("Login to see full features!"),
                   ),
+                  const SizedBox(height: 20),
                   Visibility(
                     visible: context.watch<UserProvider>().getLogin,
                     child: Text(
                         'Welcome to Scrap.py, ${context.watch<UserProvider>().getUsername}!'),
                   ),
+                  const SizedBox(height: 20),
                   Visibility(
                     visible: context.watch<UserProvider>().getLogin,
                     child: Text(
                         'So far, you have donated ${context.watch<UserProvider>().getTotalMass} kgs worth of trash! With net GHG emissions from recycling of ${context.watch<UserProvider>().getNetEmission} Kgs of CO2-eq/kg of mixed recyclables. Here\'s the breakdown:'),
                   ),
+                  const SizedBox(height: 20),
                   Visibility(
                     visible: context.watch<UserProvider>().getLogin,
                     child: PieChart(
