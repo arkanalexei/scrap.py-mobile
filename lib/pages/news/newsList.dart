@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:scrappy/main.dart';
 import 'package:scrappy/drawer.dart';
-import 'package:scrappy/fetchNews.dart';
-import 'package:scrappy/pages/newsPage.dart';
+import 'package:scrappy/pages/news/fetchNews.dart';
+import 'package:scrappy/pages/news/newsPage.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:scrappy/providers/userProvider.dart';
@@ -146,6 +146,11 @@ class _NewsListState extends State<NewsList> {
                                                 final response = await request.post(
                                                     "https://scrappy.up.railway.app/news/delete/$pk/",
                                                     {});
+
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(SnackBar(
+                                                        content: Text(response[
+                                                            'message'])));
 
                                                 Navigator.pushReplacement(
                                                     context,

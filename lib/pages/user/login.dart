@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:scrappy/main.dart';
 import 'package:scrappy/drawer.dart';
-import 'package:scrappy/pages/register.dart';
+import 'package:scrappy/pages/user/register.dart';
 import 'package:scrappy/providers/userProvider.dart';
 
 class LoginPage extends StatefulWidget {
@@ -166,6 +166,11 @@ class _LoginPageState extends State<LoginPage> {
                           .read<UserProvider>()
                           .saveUsername(response['username']);
 
+                      context.read<UserProvider>().saveDataMap(response['mass']);
+
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text(response['message'])));
+
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
@@ -173,7 +178,7 @@ class _LoginPageState extends State<LoginPage> {
                     } else {
                       // Code here will run if the login failed (wrong username/password).
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text('Incorrect username or password!')));
+                          content: Text(response['message'])));
                     }
                   },
                 )),

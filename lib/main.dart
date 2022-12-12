@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:scrappy/pages/login.dart';
-import 'package:scrappy/pages/register.dart';
+import 'package:scrappy/pages/user/login.dart';
+import 'package:scrappy/pages/user/register.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:scrappy/drawer.dart';

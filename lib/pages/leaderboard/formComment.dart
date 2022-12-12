@@ -76,11 +76,12 @@ class _CommentFormState extends State<CommentFormPage> {
                             String msg = "";
                             if (_formKey.currentState!.validate()) {
                               // send data to server
+
                               final response = await request.post(
-                                '$SITE_URL/leaderboard/submit/flutter/',
-                                jsonEncode({
-                                  'comment': _comment,
-                                }),
+                                'https://scrappy.up.railway.app/leaderboard/submit/flutter/',
+                                {
+                                  'comment': _comment
+                                }
                               );
                               // response SHOULD be in json form
                               msg = response['message'].toString();

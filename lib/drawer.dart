@@ -3,10 +3,10 @@ import 'package:scrappy/main.dart';
 import 'package:scrappy/pages/deposit/deposit.dart';
 import 'package:scrappy/pages/deposit/form.dart';
 import 'package:scrappy/pages/leaderboard/formComment.dart';
-import 'package:scrappy/pages/login.dart';
-import 'package:scrappy/pages/register.dart';
-import 'package:scrappy/pages/newsList.dart';
-import 'package:scrappy/pages/newsSubmit.dart';
+import 'package:scrappy/pages/user/login.dart';
+import 'package:scrappy/pages/user/register.dart';
+import 'package:scrappy/pages/news/newsList.dart';
+import 'package:scrappy/pages/news/newsSubmit.dart';
 // leaderboard
 import 'package:scrappy/pages/leaderboard/leaderboard.dart';
 import 'package:scrappy/providers/userProvider.dart';
@@ -87,8 +87,10 @@ class _PublicDrawerState extends State<PublicDrawer> {
                     title: const Text('Logout'),
                     onTap: () async {
                       // Route menu ke halaman form
-                      final response = await request
-                          .get("https://scrappy.up.railway.app/logout/");
+                      // final response = await request
+                      //     .get("https://scrappy.up.railway.app/logout/");
+
+                      final response = await request.logout("https://scrappy.up.railway.app/logout/");
 
                       context.read<UserProvider>().saveAdmin(false);
                       context.read<UserProvider>().saveLogin(false);
