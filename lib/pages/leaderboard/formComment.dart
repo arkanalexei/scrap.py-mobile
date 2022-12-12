@@ -1,10 +1,11 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, use_build_context_synchronously, duplicate_ignore
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:scrappy/drawer.dart';
+import 'package:scrappy/pages/leaderboard/leaderboard.dart';
 import '../../providers/constants.dart';
 
 class CommentFormPage extends StatefulWidget {
@@ -85,10 +86,21 @@ class _CommentFormState extends State<CommentFormPage> {
                               );
                               // response SHOULD be in json form
                               msg = response['message'].toString();
+                              
+                              // empty form
+                              _formKey.currentState!.reset();
+
+                              // redirect to leaderboard page
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const Board()),
+                              );
+
                             } else {
                               msg = "Invalid form. Recheck your data.";
                             }
-                            // ignore: use_build_context_synchronously
+                            
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(SnackBar(content: Text(msg)));
                           },
