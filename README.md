@@ -14,11 +14,8 @@
 ## ⚒️ Tools ⚒️
 ![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)
 ![Dart](https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white)
-<<<<<<< HEAD
 ![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)
-=======
 ![Railway](https://img.shields.io/badge/Railway-0B0D0E.svg?style=for-the-badge&logo=Railway&logoColor=white)
->>>>>>> 6cee5133535f7afda0394734bd6a9d86438198d8
 
 ## 👤 Anggota Kelompok 👤
 - [Laela Putri Salsa Biella - 2106751562](https://github.com/salsabiellalp)
@@ -26,10 +23,6 @@
 - [Givarrel Veivel Pattiwael - 2106640341](https://github.com/Veivel)
 - [Abraham Javier Sebastian Situmorang - 2106704364](https://github.com/ajsebastians)
 - [Arkan Alexei Andrei - 2106631463](https://github.com/arkanalexei)
-<<<<<<< HEAD
-=======
-- Muhammad Rafi' Nur Rozaan - NPM
->>>>>>> 6cee5133535f7afda0394734bd6a9d86438198d8
 
 ## 📝 Ringkasan 📝
 Indonesia merupakan negara produsen sampah terbesar di seluruh Asia. Faktanya, kita menghasilkan 67,8 juta ton sampah pada tahun 2021. Produksi sampah Indonesia pada tahun 2022 diperkirakan mencapai 68,8 juta ton.
@@ -81,11 +74,7 @@ Kalkulator jumlah *Greenhouse Emissions* yang telah dikurangi oleh user dengan m
 - User bisa melihat green footprint mereka
 
 ## 🌐 Integrasi Web 🌐
-<<<<<<< HEAD
-Membuat fungsi fetch yang mengembalikan Future sebuah tipe data secara asinkronus dari endpoint heroku. Endpoint tersebut disimpan pada var url.
-=======
-Integrasi web dilakuakn dengan embuat fungsi fetch yang mengembalikan Future sebuah tipe data secara asinkronus dari endpoint Railway. Objek Future ini dapat menyimpan status pending dari sebuah operasi asinkronus (Uncompleted) ataupun hasil operasinya sendiri (Completed). Aplikasi Flutter dapat berinteraksi dengan endpoint Railway dengan cara yang sama seperti website berbasis Django yang berinteraksi dengan endpoint. Endpoint tersebut disimpan pada var url.
+Integrasi web dilakukan dengan membuat fungsi fetch yang mengembalikan Future sebuah tipe data secara asinkronus dari endpoint Railway. Objek Future ini dapat menyimpan status pending dari sebuah operasi asinkronus (Uncompleted) ataupun hasil operasinya sendiri (Completed). Aplikasi Flutter dapat berinteraksi dengan endpoint Railway dengan cara yang sama seperti website berbasis Django yang berinteraksi dengan endpoint. Endpoint tersebut disimpan pada var url.
 
 ## Quick Start
 Setelah melakukan `git clone` dari repositori ini, lakukan `flutter pub get` untuk meng-update packages yang termasuk dalam pubspec. Kemudian aplikasi bisa dijalankan secara local dengan `flutter run`, atau `flutter run -d chrome --web-renderer html` jika ada masalah dengan command yang pertama.
->>>>>>> 6cee5133535f7afda0394734bd6a9d86438198d8
