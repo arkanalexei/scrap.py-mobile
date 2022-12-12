@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:scrappy/main.dart';
 import 'package:scrappy/pages/deposit/deposit.dart';
 import 'package:scrappy/pages/deposit/form.dart';
+import 'package:scrappy/pages/tukarpoin/createPerks.dart';
+import 'package:scrappy/pages/tukarpoin/redeem.dart';
 import 'package:scrappy/pages/login.dart';
 import 'package:scrappy/pages/register.dart';
 import 'package:scrappy/pages/newsList.dart';
@@ -44,50 +46,6 @@ class _PublicDrawerState extends State<PublicDrawer> {
                 );
               },
             ),
-            // ListTile(
-            //   title: const Text('Login'),
-            //   onTap: () {
-            //     // Route menu ke halaman form
-            //     Navigator.pushReplacement(
-            //       context,
-            //       MaterialPageRoute(builder: (context) => LoginPage()),
-            //     );
-            //   },
-            // ),
-            // ListTile(
-            //   title: const Text('Register'),
-            //   onTap: () {
-            //     // Route menu ke halaman form
-            //     Navigator.pushReplacement(
-            //       context,
-            //       MaterialPageRoute(builder: (context) => RegisterPage()),
-            //     );
-            //   },
-            // ),
-            // ListTile(
-            //   title: const Text('News List'),
-            //   onTap: () {
-            //     // Route menu ke halaman form
-            //     Navigator.pushReplacement(
-            //       context,
-            //       MaterialPageRoute(builder: (context) => NewsList()),
-            //     );
-            //   },
-            // ),
-
-            // Visibility(
-            //   visible: context.watch<UserProvider>().getAdmin,
-            //   child: ListTile(
-            //     title: const Text('News Submit'),
-            //     onTap: () {
-            //       // Route menu ke halaman form
-            //       Navigator.pushReplacement(
-            //         context,
-            //         MaterialPageRoute(builder: (context) => NewsSubmit()),
-            //       );
-            //     },
-            //   ),
-            // ),
 
             ExpansionTile(
               leading: Icon(Icons.person),
@@ -128,6 +86,7 @@ class _PublicDrawerState extends State<PublicDrawer> {
                     title: const Text('Logout'),
                     onTap: () async {
                       // Route menu ke halaman form
+                      // final response = await request.logout('https://scrappy.up.railway.app/logout/');
                       final response = await request
                           .get("https://scrappy.up.railway.app/logout/");
 
@@ -209,6 +168,38 @@ class _PublicDrawerState extends State<PublicDrawer> {
                   ),
                 ),
               ],
+            ),
+
+            Visibility(
+              visible: context.watch<UserProvider>().getLogin,
+              child: ExpansionTile(
+                leading: Icon(Icons.article),
+                iconColor: Color(0xFF003320),
+                collapsedIconColor: Color(0xFF003320),
+                title: Text("Tukar Poin"),
+                textColor: Color(0xFF198F85),
+                children: [
+                  ListTile(
+                      title: Text("Perks"),
+                      onTap: () {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Redeem()));
+                      }),
+                  Visibility(
+                    visible: context.watch<UserProvider>().getAdmin,
+                    child: ListTile(
+                        title: Text("Create"),
+                        onTap: () {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const CreatePerks()));
+                        }),
+                  ),
+                ],
+              ),
             ),
           ],
         ),

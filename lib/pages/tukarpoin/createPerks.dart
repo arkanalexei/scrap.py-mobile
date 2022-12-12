@@ -1,3 +1,7 @@
+
+
+// import 'dart:ffi';
+
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:scrappy/main.dart';
@@ -6,25 +10,27 @@ import 'package:scrappy/drawer.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:scrappy/pages/newsList.dart';
+import 'package:scrappy/pages/tukarpoin/redeem.dart';
 
 
-class NewsSubmit extends StatefulWidget {
-  const NewsSubmit({super.key});
+class CreatePerks extends StatefulWidget {
+  const CreatePerks({super.key});
   @override
-  State<NewsSubmit> createState() => _NewsSubmitState();
+  State<CreatePerks> createState() => _CreatePerksState();
 }
 
-class _NewsSubmitState extends State<NewsSubmit> {
+class _CreatePerksState extends State<CreatePerks> {
   final _formKey = GlobalKey<FormState>();
-  String _judul = "";
+  String _nama = "";
   String _deskripsi = "";
+  String _harga = "";
 
   @override
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
-        title: Text('News Submit'),
+        title: Text('Create Perks'),
         backgroundColor: Color(0xFF003320),
       ),
 
@@ -45,8 +51,8 @@ class _NewsSubmitState extends State<NewsSubmit> {
                     children: [
                       TextFormField(
                         decoration: InputDecoration(
-                          hintText: "Title",
-                          labelText: "Title",
+                          hintText: "Name",
+                          labelText: "Name",
                           // Menambahkan icon agar lebih intuitif
                           icon: const Icon(Icons.title),
                           // Menambahkan circular border agar lebih rapi
@@ -57,19 +63,19 @@ class _NewsSubmitState extends State<NewsSubmit> {
                         // Menambahkan behavior saat nama diketik
                         onChanged: (String? value) {
                           setState(() {
-                            _judul = value!;
+                            _nama = value!;
                           });
                         },
                         // Menambahkan behavior saat data disimpan
                         onSaved: (String? value) {
                           setState(() {
-                            _judul = value!;
+                            _nama = value!;
                           });
                         },
                         // Validator sebagai validasi form
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
-                            return 'Title can not be empty!';
+                            return 'Name can not be empty!';
                           }
                           return null;
                         },
@@ -112,6 +118,50 @@ class _NewsSubmitState extends State<NewsSubmit> {
                           return null;
                         },
                       ),
+
+                      const SizedBox(height: 20.0),
+
+                      TextFormField(
+                        keyboardType: TextInputType.number,
+                        inputFormatters: <TextInputFormatter>[
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
+                        decoration: InputDecoration(
+                          hintText: "Price",
+                          labelText: "Price",
+                          // Menambahkan icon agar lebih intuitif
+                          icon: const Icon(Icons.numbers),
+                          // Menambahkan circular border agar lebih rapi
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                        ),
+                        // Menambahkan behavior saat nama diketik
+                        onChanged: (String? value) {
+                          // String _nominal = _nominalController.text;
+                          // int.parse(_nominal);
+                          setState(() {
+                            _harga = value!;
+                          });
+                        },
+                        // Menambahkan behavior saat data disimpan
+                        onSaved: (String? value) {
+                          // String _nominal = _nominalController.text;
+                          // int.parse(_nominal);
+                          setState(() {
+                            _harga = value!;
+                          });
+                        },
+                        // Validator sebagai validasi form
+                        validator: (String? value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Nominal tidak boleh kosong!';
+                          }
+                          return null;
+                        },
+                      ),
+
+
                       const SizedBox(height: 20.0),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -124,7 +174,7 @@ class _NewsSubmitState extends State<NewsSubmit> {
                           child: Center(
                               child: TextButton(
                             child: Text(
-                              "Create Article",
+                              "Create Perk",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
@@ -136,20 +186,25 @@ class _NewsSubmitState extends State<NewsSubmit> {
                                   Size.fromHeight(40)),
                             ),
                             onPressed: () async {
+                              // int price = int.parse(_harga);
+                              print(_nama);
+                              print(_deskripsi);
+                              print(_harga);
                               final response = await request.post(
-                                "https://scrappy.up.railway.app/news/add/",
+                                "https://scrappy.up.railway.app/tukarpoin/tambah/",
                                 {
-                                  'title': _judul,
-                                  'description': _deskripsi,
+                                  'nama': _nama,
+                                  'deskripsi': _deskripsi,
+                                  'harga': _harga,
+                                  // 'submit': 'Submit'
                                 },
                               );
 
-                              // Code here will run if the login succeeded.
                               Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
                                       builder: (BuildContext context) =>
-                                          const NewsList()));
+                                          const Redeem()));
 
                               // Code here will run if the login failed (wrong username/password).
                             },

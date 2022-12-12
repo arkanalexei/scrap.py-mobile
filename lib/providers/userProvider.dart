@@ -4,10 +4,12 @@ class UserProvider with ChangeNotifier {
   bool _admin = false;
   bool _login = false;
   String _username = "";
+  double _points = 0;
 
   bool get getAdmin => _admin;
   bool get getLogin => _login;
   String get getUsername => _username;
+  double get getPoints => _points;
   
   void saveAdmin(bool admin) {
     _admin = admin;
@@ -21,6 +23,11 @@ class UserProvider with ChangeNotifier {
 
   void saveUsername(String username) {
     _username = username;
+    notifyListeners();
+  }
+
+  void savePoints(double points) {
+    _points = points;
     notifyListeners();
   }
 }
