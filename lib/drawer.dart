@@ -2,6 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:scrappy/main.dart';
 import 'package:scrappy/pages/deposit/deposit.dart';
 import 'package:scrappy/pages/deposit/form.dart';
+import 'package:scrappy/pages/about/aboutUs.dart';
+import 'package:scrappy/pages/about/feedback.dart';
+import 'package:scrappy/pages/about/feedbackform.dart';
+import 'package:scrappy/pages/login.dart';
+import 'package:scrappy/pages/register.dart';
+import 'package:scrappy/pages/newsList.dart';
+import 'package:scrappy/pages/newsSubmit.dart';
 import 'package:scrappy/pages/leaderboard/formComment.dart';
 import 'package:scrappy/pages/user/login.dart';
 import 'package:scrappy/pages/user/register.dart';
@@ -9,6 +16,7 @@ import 'package:scrappy/pages/news/newsList.dart';
 import 'package:scrappy/pages/news/newsSubmit.dart';
 // leaderboard
 import 'package:scrappy/pages/leaderboard/leaderboard.dart';
+
 import 'package:scrappy/providers/userProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -137,6 +145,56 @@ class _PublicDrawerState extends State<PublicDrawer> {
                 ),
               ],
             ),
+
+            ExpansionTile(
+              leading: const Icon(Icons.corporate_fare),
+              iconColor: Color(0xFF003320),
+              collapsedIconColor: Color(0xFF003320),
+              title: Text("About Us"),
+              textColor: Color(0xFF198F85),
+              children: [
+                
+                ListTile(
+                  title: const Text('About Us'),
+                  onTap: () {
+                    // Route menu ke halaman form
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const AboutUsHomePage()),
+                    );
+                  },
+                ),
+
+                ListTile(
+                  title: const Text('Feedback Page'),
+                  onTap: () {
+                    // Route menu ke halaman form
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const FeedbackHomePage()),
+                    );
+                  },
+                ),
+
+                Visibility(
+                  visible: context.watch<UserProvider>().getLogin,
+                  child: ListTile(
+                    title: const Text('Feedback Form'),
+                    onTap: () {
+                      // Route menu ke halaman form
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const FeedbackFormPage()),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+
             ExpansionTile(
               leading: const Icon(Icons.airline_seat_recline_normal_sharp),
               iconColor: const Color(0xFF003320),
