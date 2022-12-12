@@ -12,6 +12,7 @@ class UserProvider with ChangeNotifier {
   double _organik = 0;
   double _netEmission = 0;
   double _totalMass = 0;
+  double _points = 0;
 
 
   bool get getAdmin => _admin;
@@ -25,6 +26,7 @@ class UserProvider with ChangeNotifier {
   double get getNetEmission => _netEmission;
   double get getTotalMass => _totalMass;
   Map<String, double> get getDataMap => _dataMap;
+  double get getPoints => _points;
   
   void saveAdmin(bool admin) {
     _admin = admin;
@@ -62,6 +64,11 @@ class UserProvider with ChangeNotifier {
     };
 
 
+    notifyListeners();
+  }
+
+  void savePoints(double points) {
+    _points = points;
     notifyListeners();
   }
 }
