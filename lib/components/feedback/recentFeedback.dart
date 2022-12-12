@@ -16,6 +16,7 @@ class RecentFeedback extends StatefulWidget {
 }
 
 class _RecentFeedbackState extends State<RecentFeedback> {
+  // ignore: unused_field
   final _registerFeedbackFormKey = GlobalKey<FormState>();
   late final Future completedFuture;
   @override

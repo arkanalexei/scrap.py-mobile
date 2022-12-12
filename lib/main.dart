@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:scrappy/pages/user/login.dart';
-import 'package:scrappy/pages/user/register.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:scrappy/drawer.dart';
@@ -114,6 +112,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: PieChart(
                       dataMap: context.watch<UserProvider>().getDataMap,
                       chartRadius: MediaQuery.of(context).size.width / 2.4,
+                      legendOptions: LegendOptions(
+                        legendPosition: LegendPosition.bottom
+                      ),
                     ),
                   ),
                 ],

@@ -1,11 +1,9 @@
-import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
-import 'package:scrappy/main.dart';
-import 'package:flutter/services.dart';
 import 'package:scrappy/drawer.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:scrappy/pages/news/newsList.dart';
+
 
 class NewsSubmit extends StatefulWidget {
   const NewsSubmit({super.key});

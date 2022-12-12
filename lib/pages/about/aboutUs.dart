@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:scrappy/drawer.dart';
-// import 'package:scrappy/components/feedback/recentFeedback.dart';
-import 'package:scrappy/providers/userProvider.dart';
 
 // import 'feedbackform.dart';
 
