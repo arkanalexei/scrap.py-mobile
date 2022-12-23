@@ -78,3 +78,23 @@ Integrasi web dilakukan dengan membuat fungsi fetch yang mengembalikan Future se
 
 ## Quick Start
 Setelah melakukan `git clone` dari repositori ini, lakukan `flutter pub get` untuk meng-update packages yang termasuk dalam pubspec. Kemudian aplikasi bisa dijalankan secara local dengan `flutter run`, atau `flutter run -d chrome --web-renderer html` jika ada masalah dengan command yang pertama.
+
+-----
+
+## Widgets
+
+Kami menggunakan berbagai macam widget, dari yang stateful sampai yang stateless. Stateless widget adalah komponen yang tidak memiliki 'variabel' berubah-ubah. Ia bisa menerima props yang pada setiap render/build berubah, namun widgetnya sendiri tidak berubah (karena hanya digantikan pada refresh). Sedangkan, stateful widget adalah widget yang memiliki 'state', yaitu variable yang dapat berubah. 
+
+Misalnya RecentDeposits widget yang menampung FutureBuilder untuk daftar deposits terbaru. Konten dari daftar deposit tersebut dapat berubah ketika fetching sudah berhasil, maka ia adalah stateful widget. Text widget yang menampilakn depositnya sendiri termasuk stateless karena ia menerima props atau argumen, yang ketika berubah, widgetnya akan di build ulang sehingga tampilannya terbaharui. Page untuk form juga berupa Stateful Widget karena isi input field dalam formnya dapat berubah ketika diisi user.
+
+## Event Listeners/Handlers
+
+Aplikasi ini menggunakan berbagai macam event handler untuk menangani event yang terjadi. Misalnya, banyak tombol menggunakan listener onPressed atau onTap untuk melakukan suatu *action* ketika user men-tap atau memencet tombol terssebut. Kemudian ada juga event onChanged untuk input field dalam form. Event handler ini mengubah nilai dari input form tersebut namun sekaligus. Setelah form tersebut disimpan, ada juga event handler onSaved yang dapat menyimpan data tersebut.
+
+## Kesulitan yang dihadapi
+
+Dalam pengerjaan proyek kali ini, kami harus mengintegrasikan backend yang sudah ada ke dalam aplikasi Flutter, yang sendirinya merupakan teknologi yang sangat amat baru dan belum di dalam zona nyaman. Selain migrasi dari Heroku ke Railway yang cukup menantang, banyak masalah yang muncul dari awal hingga akhir pengerjaan proyek dari backend Django karena kurang sesuai dan belum bisa digunakan oleh Flutter. 
+
+Misalnya, kami harus mengadaptasi POST request handler Django untuk bisa menerima data form dalam bentuk JSON object dalam body, daripada bentuk HTML Form (request.form.data). Kemudian banyak halaman yang perlu ditambah dekorator @csrf_exempt karena proyek Django kami tidak dibuat untuk menerima request dari luar website. Setelah masalah tersebut diselesaikan, adapun pertanyaan besar yaitu bagaimana melakukan autentikasi menggunakan Flutter. Meskipun adanya package pbp_django_auth, namun implementasinya tetap menantang karena dia termasuk teknologi yang baru dan berbeda.
+
+Selain itu, tantangan muncul terkait pembuatan GitHub Workflow sebagai bagian dari CI/CD ke App Center. Hal tersebut perlu kami jelajahi sendiri, mulai dari pilihan release APK, cara menjalankan github workflows manual sampai actions/templates yang disediakan oleh GitHub. Dengan demikian kami bangga sudah bisa menyelesaikan aplikasi ini dengan realisasi 100% 😊.
